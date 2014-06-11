@@ -41,8 +41,8 @@ walkForJson = (path, list) ->
 makeLink = (li) ->
   "<p><a href='#{li.slice(0,-2)}html'>#{li}</a></p>"
 
-head = fs.readFileSync('layouts/head.html')
-foot = fs.readFileSync('layouts/foot.html')
+# head = fs.readFileSync('layouts/head.html')
+# foot = fs.readFileSync('layouts/foot.html')
 
 l = getFileList()
 
@@ -57,8 +57,14 @@ for li in l
   do (li) ->
     fs.readFile 'posts/'+li, 'utf8', (err, data) ->
       content = marked data
-      fs.writeFile "sites/#{li.slice(0,-2)}html", head+content+foot, (err) ->
+      options =
+        content: content
+        page:
+          title: 'Post'
+      jade.renderFile 'jade/post.jade', options, (err, html) ->
         throw err if err
+        fs.writeFile "sites/#{li.slice(0,-2)}html", html, (err) ->
+          throw err if err
 
 # index.html
 
@@ -67,9 +73,11 @@ walkForJson('posts', list)
 
 options =
   list: list
+  page:
+    title: '何必'
 
-jade.renderFile 'index.jade', options, (err, html) ->
+jade.renderFile 'jade/index.jade', options, (err, html) ->
   throw err if err
   # console.log html
-  fs.writeFile "sites/index.html", head+html+foot, (err) ->
+  fs.writeFile "sites/index.html", html, (err) ->
     throw err if err

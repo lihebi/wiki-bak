@@ -8,5 +8,10 @@ mixin lists(list, path)
         ul
           +lists(i.list, path+i.name+'/')
 
-ul
-  +lists(list, '')
+doctype html
+html
+  include head
+  body
+    ul
+      +lists(list, '')
+    include foot
