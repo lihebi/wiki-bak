@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if [[ -e sites ]]
+then
+  rm -r sites
+fi
+
+#node index.js
+coffee app.coffee

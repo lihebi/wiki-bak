@@ -1,0 +1,12 @@
+mixin lists(list, path)
+  - each i in list
+    - if (typeof(i) == 'string')
+      li
+        a(href="#{path}#{i}")= i
+    - else
+      li= i.name
+        ul
+          +lists(i.list, path+i.name+'/')
+
+ul
+  +lists(list, '')
