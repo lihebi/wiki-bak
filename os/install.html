@@ -1,11 +1,19 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="osx-10-10-yosemite">OSX 10.10 yosemite</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+  </head>
+  <body>
+    <div class="narrow"><h2 id="osx-10-10-yosemite">OSX 10.10 yosemite</h2>
 <p>这个版本的preview版无法使用<code>createinstallmedia</code>的方法。</p>
 <p>使用<code>InstallESD.dmg</code>方法：</p>
 <ol>
 <li>格式化</li>
 </ol>
-<p>Disk Utility，点击U盘（而不是分区），点分区。
-设置为一个分区，名字，扩展日志，option选GUID。</p>
+<p>Disk Utility，点击U盘（而不是分区），点分区。<br>设置为一个分区，名字，扩展日志，option选GUID。</p>
 <ol>
 <li>从dmg中找到InstallESD.dmg</li>
 <li>显示隐藏文件</li>
@@ -51,11 +59,17 @@ diskutil list, insert usb, diskutil list =&gt; /dev/disk1
 diskutil unmountDisk /dev/diskN
 sudo dd if=/path/to/downloaded.img of=/dev/rdiskN bs=1m
 diskutil eject /dev/diskN
-</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-50872903-1', 'lihebi.com');
-ga('send', 'pageview');
-</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>
+</code></pre></div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">终端</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+  </head>
+  <body>
+    <div class="narrow"><h1 id="-">终端</h1>
 <pre><code>alias google-chrome=&#39;open -a Google\ Chrome&#39;
 </code></pre><p>让spotlight重新建立索引：</p>
 <pre><code>sudo mdutil -e / # 建立整个硬盘
@@ -16,10 +25,7 @@ sudo mdutil -e /Volumn/MyVolumn ＃ 针对单个volumn，应该可以对任意�
 <p><code>shift+cmd+d</code>横向分割</p>
 <p><code>md+d</code> 纵向</p>
 <h2 id="zsh">zsh</h2>
-<p>虽然不是mac的专利，但是我认识它是在这。使用它的原因是有oh-my-zsh。一定要结合autojump使用。
-确实一个人必须经历过足够的麻烦才会意识到简洁的珍贵。
-这和使用一门语言，最好先自己去实现所要的功能，才能体会到别人维护很多年的库的来之不易。
-且行且珍惜。</p>
+<p>虽然不是mac的专利，但是我认识它是在这。使用它的原因是有oh-my-zsh。一定要结合autojump使用。<br>确实一个人必须经历过足够的麻烦才会意识到简洁的珍贵。<br>这和使用一门语言，最好先自己去实现所要的功能，才能体会到别人维护很多年的库的来之不易。<br>且行且珍惜。</p>
 <pre><code>cat /etc/shells
 chsh -s /bin/zsh
 </code></pre><h3 id="install-oh-my-zsh">Install oh-my-zsh</h3>
@@ -42,11 +48,9 @@ ls -l **/*.sh
 brew uninstall xxx
 brew search xxx
 brew --prefix
-</code></pre><p>homebrew install in <code>/usr/local/Celler/…</code>
-it create symbol links in <code>/usr/local/bin/…</code></p>
+</code></pre><p>homebrew install in <code>/usr/local/Celler/…</code><br>it create symbol links in <code>/usr/local/bin/…</code></p>
 <h2 id="keyremap4macbook-pckeyboardhack">KeyRemap4MacBook &amp;&amp; PCKeyboardHack</h2>
-<p>System Preference ==&gt; Keyboard ==&gt; modifier ==&gt; Caps Lock无操作。
-再用PCKeyboardHack改掉</p>
+<p>System Preference ==&gt; Keyboard ==&gt; modifier ==&gt; Caps Lock无操作。<br>再用PCKeyboardHack改掉</p>
 <h2 id="alfred">Alfred</h2>
 <p>Workflow -&gt; script filter -&gt; bash</p>
 <pre><code>cat&lt;&lt;EOF
@@ -71,11 +75,17 @@ EOF
 <li>域名服务器设置为<code>3.1</code></li>
 <li>或，高级，去掉勾选“连接或断开后，清空DNS缓存”</li>
 </ul>
-</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-50872903-1', 'lihebi.com');
-ga('send', 'pageview');
-</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

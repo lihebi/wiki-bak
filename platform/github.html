@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">安装和配置</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+  </head>
+  <body>
+    <div class="narrow"><h1 id="-">安装和配置</h1>
 <pre><code>git config --global user.email &#39;xxx@xxx&#39;
 git config --global user.name &#39;xxx&#39;
 </code></pre><p>自定义配置</p>
@@ -18,8 +27,7 @@ git remote add origin https://github.com/lihebi/xxx.git
 git push -u origin master
 </code></pre><h3 id="-u-">关于<code>-u</code>的解释</h3>
 <p>使用git push -u origin master以后就可以直接使用不带别的参数的git pull从之前push到的分支来pull。</p>
-<p>加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
-还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
+<p>加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，<br>还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。</p>
 <p>所以说,第一次push的时候还是加上<code>-u</code>,以后才能用<code>git push origin master</code>用的放心.</p>
 <p>See Also: <a href="http://stackoverflow.com/questions/5697750/what-exactly-does-the-u-do-git-push-u-origin-master-vs-git-push-origin-ma">stackoverflow</a></p>
 <h2 id="-">分支</h2>
@@ -32,9 +40,7 @@ git checkout -b [branch] # 新建并切换
 git branch -d [branch] # 删除本地分支
 git branch -D &lt;branch&gt; # 强制删除没有被merge的分支
 git push origin --delete [branch] # 删除remote的分支
-</code></pre><p>不能delete current branch.
-在项目的<code>settings</code>中可以改变<code>default branch</code>
-然后再</p>
+</code></pre><p>不能delete current branch.<br>在项目的<code>settings</code>中可以改变<code>default branch</code><br>然后再</p>
 <pre><code>git push origin —delete master
 </code></pre><h3 id="merge">merge</h3>
 <pre><code>#merge: in master;
@@ -59,8 +65,7 @@ git checkout -b dev origin/dev
 </code></pre><h3 id="-">图形查看分支情况</h3>
 <pre><code>git log --graph
 </code></pre><h3 id="-">保存工作区</h3>
-<p>使用场景:当前分支需要1天才能做完.但是master上有一个bug要在2小时内修复.
-当前分支不能commit.</p>
+<p>使用场景:当前分支需要1天才能做完.但是master上有一个bug要在2小时内修复.<br>当前分支不能commit.</p>
 <p>使用stash保存当前工作.</p>
 <pre><code>git stash
 </code></pre><p>之后<code>git status</code>就会是干净的.做完bug后,回到这个分支,将stack内容pop出来.</p>
@@ -140,11 +145,17 @@ sudo chown -R git:git sample.git
 </code></pre><p>在<code>/etc/password</code>中设置git用户不允许登陆shell</p>
 <h2 id="-">使用</h2>
 <pre><code>git clone git@server:/srv/sample.git
-</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-50872903-1', 'lihebi.com');
-ga('send', 'pageview');
-</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>
+</code></pre></div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

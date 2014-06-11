@@ -1,4 +1,13 @@
-<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="strings-h">strings.h</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+  </head>
+  <body>
+    <div class="narrow"><h2 id="strings-h">strings.h</h2>
 <p>strcasecmp</p>
 <pre><code>// 忽略大小写。比较所有字节。
 // 返回：s1&gt;s2: &gt;0
@@ -12,7 +21,7 @@ int strncasecmp(const char *s1, const char *s2, size_t n);
 <pre><code>// ssize_t: signed int(POSIX)
 // size_t: unsigned int
 size_t strlen(const char *str);
-</code></pre><h2 id="-signal-h-"><signal.h></h2>
+</code></pre><h2 id="-signal-h-">&lt;signal.h&gt;</h2>
 <p>signal</p>
 <pre><code>/**
  * sig
@@ -38,11 +47,17 @@ size_t strlen(const char *str);
  * customize: void handler_function(int parameter)
  */
 void (*signal(int sig, void (*func)(int))) (int);
-</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-50872903-1', 'lihebi.com');
-ga('send', 'pageview');
-</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>
+</code></pre></div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
