@@ -1,6 +1,8 @@
 'use strict';
 module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
   var config = {
     app: 'sites',
     dist: 'dist'
@@ -9,27 +11,36 @@ module.exports = function (grunt) {
   grunt.initConfig({
     config: config,
     connect: {
-      options: {
-        port: 9000,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost',
-        keepalive: true
-      },
-      livereload: {
+      server: {
         options: {
-          middleware: function(connect) {
-            return [
-            connect.static(config.app)
-            ];
-          }
+          livereload: true,
+          base: 'sites',
+          port: 9000,
+          open: true
         }
+      }
+    },
+    less: {
+      development: {
+        files: {
+          "sites/css/main.css": "less/main.less"
+        }
+      }
+    },
+    watch: {
+      less: {
+        files: ['less/main.less'],
+        tasks: ['less'],
+        options: {
+          // Start a live reload server on the default port 35729
+          livereload: true,
+        },
       }
     }
   });
 
   grunt.registerTask('default', [
-  'connect'
+  'connect',
+  'watch'
   ]);
 };

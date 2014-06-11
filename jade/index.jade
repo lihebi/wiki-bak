@@ -1,17 +1,16 @@
 mixin lists(list, path)
   - each i in list
     - if (typeof(i) == 'string')
-      li
-        a(href="#{path}#{i}")= i
+      .hebiitem
+        a.btn.btn-primary(href="#{path}#{i}")= i
     - else
-      li= i.name
-        ul
-          +lists(i.list, path+i.name+'/')
+      .hebilead
+        .hebilabel= i.name
+        +lists(i.list, path+i.name+'/')
 
 doctype html
 html
   include head
   body
-    ul
-      +lists(list, '')
+    +lists(list, '')
     include foot
