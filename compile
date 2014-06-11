@@ -10,3 +10,4 @@ coffee app.coffee
 
 mkdir sites/css
 lessc less/main.less sites/css/main.css
+cp CNAME sites/

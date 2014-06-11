@@ -3,6 +3,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-gh-pages');
   var config = {
     app: 'sites',
     dist: 'dist'
@@ -36,6 +37,12 @@ module.exports = function (grunt) {
           livereload: true,
         },
       }
+    },
+    'gh-pages': {
+      options: {
+        base: 'sites'
+      },
+      src: ['**']
     }
   });
 
