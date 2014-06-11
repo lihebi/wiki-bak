@@ -74,6 +74,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
   'shell',
+  'less',
   'useminPrepare',
   'concat',
   'cssmin',

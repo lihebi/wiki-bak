@@ -1,13 +1,16 @@
 #!/bin/zsh
 
+#TODO Use clean task
 if [[ -e sites ]]
 then
   rm -r sites
 fi
 
 #node index.js
+#TODO use coffee task
 coffee app.coffee
 
-mkdir sites/css
-lessc less/main.less sites/css/main.css
+# mkdir sites/css
+# lessc less/main.less sites/css/main.css
+#TODO use copy task
 cp CNAME sites/
