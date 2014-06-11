@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Stdlib.h
-location: 合肥
-time: 17:24:14
-categories: 库
----
 
 ## stdlib.h
 
@@ -21,8 +13,6 @@ free
 ```
 void free(void *ptr);
 ```
-
-<!--more-->
 
 calloc
 

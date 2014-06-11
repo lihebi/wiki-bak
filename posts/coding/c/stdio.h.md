@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Stdio.h
-location: 合肥
-time: 17:23:45
-categories: 库
----
 
 ## stdio.h
 
@@ -20,7 +12,6 @@ fflush
 ```
 int fflush(FILE *stream);
 ```
-<!--more-->
 
 fopen
 

@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: php
-location: 淮北
-time: 21:48:53
-categories: 后端 语言
-
----
 
 ## 基础语法
 
@@ -16,8 +7,6 @@ categories: 后端 语言
 <?php echo '<p>Hello World</p>'; ?>
 
 ```
-
-<!--more-->
 
 ```
 echo $_SERVER['HTTP_USER_AGENT'];

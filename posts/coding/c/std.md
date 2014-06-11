@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: C Standard Lib
-location: 合肥
-time: 13:32:22
-categories: 库
----
 
 ## strings.h
 
@@ -25,8 +17,6 @@ strncasecmp
 // 比较前n个字节
 int strncasecmp(const char *s1, const char *s2, size_t n);
 ```
-
-<!--more-->
 
 strlen
 

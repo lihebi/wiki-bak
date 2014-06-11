@@ -1,13 +1,4 @@
----
 
-layout: hebi-post
-title: Mac
-location: 淮北
-time: 07:45:28
-tags: mac
-categories: 系统
-
----
 # 终端
 
 ```
@@ -20,8 +11,6 @@ alias google-chrome='open -a Google\ Chrome'
 sudo mdutil -e / # 建立整个硬盘
 sudo mdutil -e /Volumn/MyVolumn ＃ 针对单个volumn，应该可以对任意一个文件夹
 ```
-
-<!--more-->
 
 # 软件
 

@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Heroku
-location: 合肥
-time: 14:15:23
-categories: 云
----
 
 ## heroku create php app
 
@@ -27,8 +19,6 @@ git push heroku master
 
 heroku open
 ```
-
-<!--more-->
 
 ## Trouble Shooting
 

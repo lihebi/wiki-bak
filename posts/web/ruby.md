@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Ruby
-location: 合肥
-time: 14:14:32
-categories: 语言
----
 
 ## RVM
 

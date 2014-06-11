@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: CSS
-location: 合肥
-time: 12:20:46
-categories: 语言
-
----
 
 # 基础
 
@@ -32,8 +23,6 @@ tr:nth-child(even)
 span:nth-child(1) /* span的父节点的第一个孩子 */
 span:nth-child(-n+3) /* 前三个 */
 ```
-
-<!--more-->
 
 # 效果
 

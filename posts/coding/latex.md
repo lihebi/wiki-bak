@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Latex
-location: 合肥
-time: 14:02:01
-categories: 语言
----
 
 ```
 \begin{enumerate}{\IEEEsetlabelwidth{12}}
@@ -14,8 +6,6 @@ categories: 语言
 \item xxx
 \end{enumerate}
 ```
-
-<!--more-->
 
 ## 在latex中写中文
 

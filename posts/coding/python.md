@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: python
-location: 淮北
-time: 08:34:29
-tags: 编程语言 python
-categories: 语言
----
 
 ## 遍历文件夹
 ```
@@ -15,8 +6,6 @@ for root, dirs, files in os.walk(‘.’):
 for f in files:
 print f
 ```
-
-<!--more-->
 
 ## range
 ```

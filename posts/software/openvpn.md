@@ -1,13 +1,3 @@
----
-
-layout: hebi-post
-title: Openvpn
-location: 合肥
-time: 13:54:51
-categories: 系统
-tags: ubuntu openvpn
-
----
 
 # 服务端
 
@@ -19,8 +9,6 @@ tags: ubuntu openvpn
     apt-get upgrade
     apt-get install openvpn
     apt-get install easy-rsa
-
-<!--more-->
 
 ## easy-rsa
 

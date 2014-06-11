@@ -1,13 +1,3 @@
----
-
-layout: hebi-post
-title: Markdown
-location: 淮北
-time: 08:37:03
-tags: 编程语言 markdown
-categories: 语言
-
----
 
 ## 空行代表段落
 
@@ -25,8 +15,6 @@ categories: 语言
 *italic* **bold**
 _italic_ __bld__
 ```
-
-<!--more-->
 
 ## ul
 ```

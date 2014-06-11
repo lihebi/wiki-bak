@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Emacs
-location: 合肥
-time: 00:07:06
-categories: 软件
----
 
 ## 快捷键
 
@@ -19,8 +11,6 @@ C-g # 取消
 C-<SPC> # 开启选中模式
 C-w # 删除选中
 ```
-
-<!--more-->
 
 #### C-x
 

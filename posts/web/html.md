@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: Html
-location: 合肥
-time: 11:33:54
-categories: 语言
-
----
 
 # 文档结构
 
@@ -33,8 +24,6 @@ categories: 语言
   </body>
 </html>
 ```
-
-<!--more-->
 
 # 技巧
 

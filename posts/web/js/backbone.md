@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: BackboneJS
-location: Hefei
-time: 01:14:26
-categories: 框架
----
 
 
 > “Get your truth out of the DOM”
@@ -35,8 +27,6 @@ todoItem.get('description');
 todoItem.set({status: 'complete'});
 todoItem.save();
 ```
-
-<!--more-->
 
 
 可以指定默认值

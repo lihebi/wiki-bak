@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Yeoman & Grunt & Bower
-location: 合肥
-time: 08:49:25
-categories: 框架
----
 
 ## Grunt
 
@@ -25,8 +17,6 @@ grunt test
 # Build an optimized, production-ready version of your app.
 grunt
 ```
-
-<!--more-->
 
 #### grunt wildcard
 

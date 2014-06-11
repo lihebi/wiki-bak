@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: Sass
-location: 合肥
-time: 15:49:41
-categories: 语言
-
----
 
 你还在用CSS?
 呵呵,你在写几百行的snippet吗?
@@ -48,8 +39,6 @@ body {
   color: #333;
 }
 ```
-
-<!--more-->
 
 ## 嵌套
 

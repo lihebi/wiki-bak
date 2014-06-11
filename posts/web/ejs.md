@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: EJS
-location: 合肥
-time: 18:10:19
-
----
 
 # 基本语法
 

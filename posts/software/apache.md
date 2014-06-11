@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Apache
-location: 合肥
-time: 14:09:10
-categories: 系统
----
 
 ## Mac
 
@@ -15,8 +7,6 @@ sudo touch /etc/apache2/users/hebi.conf
 sudo chown root:wheel /etc/apache2/users/hebi.conf
 sudo apachectl restart # now can browse: localhost/~hebi
 ```
-
-<!--more-->
 
 hebi.conf
 

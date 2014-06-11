@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: 各种启动盘的制作
-location: 淮北
-time: 08:15:05
-categories: 系统
-
----
 
 ## OSX 10.10 yosemite
 
@@ -60,8 +51,6 @@ sudo /Applications/Install\ OS\ X\ Mavericks.app/Contents/Resources/createinstal
 —applicationpath /Applications/Install\ …Mavericks.app \
 —nointeraction
 ```
-
-<!--more-->
 
 ## Raspberry Pi SD card
 

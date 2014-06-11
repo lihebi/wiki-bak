@@ -1,13 +1,3 @@
----
-
-layout: hebi-post
-title: 正则表达式
-location: 淮北
-time: 18:01:41
-tags: 正则表达式
-categories: 语言
-
----
 
 # 符号表
 | 符号  | 含义 |
@@ -29,8 +19,6 @@ categories: 语言
 |  [^aeiou]      | 除了aeiou 以外的任何字符 |
 |  \B,\D,\S,\W   | 与小写字母相反 |
 | [a-zA-Z0-9]    |   |
-
-<!--more-->
 
 # python 语法
 

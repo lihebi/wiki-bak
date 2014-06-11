@@ -1,12 +1,3 @@
----
-
-layout: hebi-post
-title: Javascript
-location: 淮北
-time: 08:12:01
-tags: javascript 编程语言
-categories: 语言
----
 
 # 函数
 

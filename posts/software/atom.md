@@ -1,18 +1,8 @@
----
-
-layout: hebi-post
-title: Atom
-location: 合肥
-time: 00:36:22
-categories: 软件
----
 
 
 ## Palette (Cmd-Shift-p)
 
 * styleguide
-
-<!--more-->
 
 ## Package
 

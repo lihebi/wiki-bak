@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: 翻墙
-location: 合肥
-time: 14:24:00
-categories: 未分类
----
 
 
 ## ssh for forward used by safe browser

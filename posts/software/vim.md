@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Vim
-location: 合肥
-time: 16:28:11
-categories: 系统
----
 
 ## 未分类
 
@@ -23,8 +15,6 @@ g Ctrl-g
 拼写模式下,按`z=`显示提示
 
 选中模式下,按`=`缩进文本
-
-<!--more-->
 
 
 

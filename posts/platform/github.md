@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Github
-location: 合肥
-time: 14:36:03
-categories: 云
----
 
 # 安装和配置
 
@@ -22,8 +14,6 @@ git config --global alias.lg \
 --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 --abbrev-commit"
 ```
-
-<!--more-->
 
 # 概念
 

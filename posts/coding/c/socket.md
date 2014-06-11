@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Socket In C
-location: 合肥
-time: 13:32:51
-categories: 库
----
 
 ## API
 
@@ -17,8 +9,6 @@ socket
 // protocol: end-to-end protocol. IPPROTO_TCP, IPPROTO_UDP
 int socket(int domain, int type, int protocol);
 ```
-
-<!--more-->
 
 inet_pton
 

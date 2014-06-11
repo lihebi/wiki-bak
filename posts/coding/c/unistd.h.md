@@ -1,11 +1,3 @@
----
-
-layout: hebi-post
-title: Unistd.h
-location: 合肥
-time: 10:25:22
-categories: 库
----
 
 ## getopt
 
