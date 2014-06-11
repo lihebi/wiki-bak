@@ -2,6 +2,17 @@ marked = require 'marked'
 fs = require "fs"
 jade = require 'jade'
 
+marked.setOptions
+  renderer: new marked.Renderer()
+  gfm: true
+  tables: true
+  breaks: true
+  pedantic: false
+  sanitize: true
+  smartLists: true
+  smartypants: false
+
+
 walk = (path, cb) ->
   dirList = fs.readdirSync path
   for item in dirList
@@ -59,6 +70,7 @@ for li in l
       content = marked data
       options =
         content: content
+        pretty: true
         page:
           title: 'Post'
       jade.renderFile 'jade/post.jade', options, (err, html) ->
@@ -73,6 +85,7 @@ walkForJson('posts', list)
 
 options =
   list: list
+  pretty: true
   page:
     title: '何必'
 

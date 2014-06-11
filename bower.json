@@ -1,0 +1,23 @@
+{
+  "name": "wiki",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lihebi/wiki",
+  "authors": [
+    "Hebi Li <lihebi@mail.ustc.edu.cn>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "google-code-prettify": "~1.0.1",
+    "jquery": "~2.1.1",
+    "keymaster": "~1.6.2"
+  }
+}

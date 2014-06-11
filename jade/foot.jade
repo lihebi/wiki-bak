@@ -7,6 +7,13 @@ script.
   ga('create', 'UA-50872903-1', 'lihebi.com');
   ga('send', 'pageview');
 
-script(src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js")
-script(src="http://cdn.bootcss.com/prettify/r298/prettify.min.js")
-script(src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js")
+// build:js /js/app.js
+//- script(src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js")
+//- script(src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js")
+//- script(src="http://cdn.bootcss.com/prettify/r298/prettify.min.js")
+//- script(src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js")
+script(src="../bower_components/jquery/dist/jquery.js")
+script(src="../bower_components/bootstrap/dist/js/bootstrap.js")
+script(src="../bower_components/google-code-prettify/src/prettify.js")
+script(src="../bower_components/keymaster/keymaster.js")
+// endbuild

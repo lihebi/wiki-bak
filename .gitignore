@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 sites
 .grunt
+bower_components
+.tmp

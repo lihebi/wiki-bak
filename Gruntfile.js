@@ -4,6 +4,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-gh-pages');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-usemin')
   var config = {
     app: 'sites',
     dist: 'dist'
@@ -43,8 +47,35 @@ module.exports = function (grunt) {
         base: 'sites'
       },
       src: ['**']
-    }
+    },
+    useminPrepare: {
+      options: {
+        dest: 'sites'
+      },
+      html: 'sites/index.html'
+    },
+    usemin: {
+      options: {
+        // assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+      },
+    html: ['sites/**/*.html'],
+      // css: ['<%= config.dist %>/styles/{,*/}*.css']
+    },
   });
+
+  grunt.registerTask('build', [
+  'useminPrepare',
+  'concat',
+  'cssmin',
+  'uglify',
+  // 'filerev',
+  'usemin'
+  ]);
+
+  grunt.registerTask('serve', [
+  'connect',
+  'watch'
+  ])
 
   grunt.registerTask('default', [
   'connect',
