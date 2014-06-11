@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">基础</h1>
+<p>margin可以是负的</p>
+<p>padding不可以</p>
+<h2 id="-">选择器</h2>
+<p>nth-child</p>
+<pre><code>element:nth-child(an + b) /* n start from 0, but 元素 from 1. 即第一个元素id是1 */
+</code></pre><p>examples:</p>
+<pre><code>tr:nth-child(2n+1)
+tr:nth-child(odd)
+tr:nth-child(even)
+span:nth-child(1) /* span的父节点的第一个孩子 */
+span:nth-child(-n+3) /* 前三个 */
+</code></pre><h1 id="-">效果</h1>
+<h2 id="box-shadow">box-shadow</h2>
+<pre><code>box-shadow: &lt;offset-x&gt; &lt;offset-y&gt; &lt;blur-radius&gt;? &lt;spread-radius&gt;? &lt;color&gt;?
+</code></pre><pre><code>-moz-
+-webkit-
+box-shadow:
+</code></pre><p>examples:</p>
+<pre><code>box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+</code></pre><h2 id="transform">transform</h2>
+<pre><code>transform: none
+transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
+transform: translate(12px, 50%)
+transform: translateX(2em)
+transform: translateY(3in)
+transform: scale(2, 0.5)
+transform: scaleX(2)
+transform: scaleY(0.5)
+transform: rotate(0.5turn)
+transform: skewX(30deg)
+transform: skewY(1.07rad)
+transform: matrix3d(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0)
+transform: translate3d(12px, 50%, 3em)
+transform: translateZ(2px)
+transform: scale3d(2.5, 1.2, 0.3)
+transform: scaleZ(0.3)
+transform: rotate3d(1, 2.0, 3.0, 10deg)
+transform: rotateX(10deg)
+transform: rotateY(10deg)
+transform: rotateZ(10deg)
+transform: perspective(17px)
+
+transform: translateX(10px) rotate(10deg) translateY(5px)
+</code></pre><h4 id="transition">transition</h4>
+<p>examples:</p>
+<pre><code>transition:  all 1s;
+</code></pre><pre><code>transition-property: background-color, color;
+transition-duration: 1s;
+transition-timing-function: ease-out;
+</code></pre><pre><code>transition-property: font-size;
+transition-duration: 4s;
+transition-delay: 2s;
+</code></pre><h1 id="-">片段</h1>
+<h2 id="file-input-button">file input button</h2>
+<pre><code>&lt;span class=&quot;btn btn-success fileinput-button&quot;&gt;
+&lt;i class=&quot;glyphicon glyphicon-plus&quot;&gt;&lt;/i&gt;
+&lt;span&gt;Add files...&lt;/span&gt;
+&lt;input type=&quot;file&quot; name=&quot;files[]&quot; multiple&gt;
+&lt;/span&gt;
+</code></pre><pre><code>.fileinput-button {
+  position: relative;
+  overflow: hidden;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: &#39;alpha(opacity=0)&#39;;
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+</code></pre><h2 id="css-div-">CSS Div中居中：</h2>
+<p>horizontal:</p>
+<pre><code>&lt;div style=‘text-align: center’&gt;
+     &lt;div style=‘margin: auto’&gt;
+     &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>a text-aligned parent can align all the text of its children.
+inline-block is treated as text; so use inline-block, don’t need margin:auto</p>
+<p>vertical:</p>
+<pre><code>&lt;div style=‘display: table’&gt;
+     &lt;div style=‘display: inline-block; vertical-align: middle’&gt;
+     &lt;/div&gt;
+&lt;/div&gt;
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

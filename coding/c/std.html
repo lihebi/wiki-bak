@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="strings-h">strings.h</h2>
+<p>strcasecmp</p>
+<pre><code>// 忽略大小写。比较所有字节。
+// 返回：s1&gt;s2: &gt;0
+//      s1=s2: =0
+//      s1&lt;s2: &lt;0
+int strcasecmp(const char *s1, const char *s2);
+</code></pre><p>strncasecmp</p>
+<pre><code>// 比较前n个字节
+int strncasecmp(const char *s1, const char *s2, size_t n);
+</code></pre><p>strlen</p>
+<pre><code>// ssize_t: signed int(POSIX)
+// size_t: unsigned int
+size_t strlen(const char *str);
+</code></pre><h2 id="-signal-h-"><signal.h></h2>
+<p>signal</p>
+<pre><code>/**
+ * sig
+ * SIGABRT Signal Abort 中止
+ * SIGFPE Floating-Point-Exception 浮点数异常
+ * SIGILL Illegal Instruction 不合法指令
+ * SIGINT Interrupt 中断
+ * SIGSEGV Segmentation Violation 段错误
+ * SIGTERM Terminate 中止
+ * SIGPIPE Broken pipe 管道错误
+ */
+
+/**
+ * `SIGPIPE`: one process open a pipe or FIFO for reading before another wrote to it.
+ If the reading process never starts, or terminates unexpectly, writing to it raises SIGPIPE.
+ Or output to a socket that isn&#39;t connected.
+ */
+
+/**
+ * func
+ * SIG_DFL default
+ * SIG_IGN Ignore
+ * customize: void handler_function(int parameter)
+ */
+void (*signal(int sig, void (*func)(int))) (int);
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

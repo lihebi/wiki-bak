@@ -1,0 +1,99 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="stdlib-h">stdlib.h</h2>
+<p>malloc</p>
+<pre><code>// Allocates a block of size bytes of memory. Not initialized.
+void *malloc(size_t size);
+</code></pre><p>free</p>
+<pre><code>void free(void *ptr);
+</code></pre><p>calloc</p>
+<pre><code>// 为一个num个元素的数组分配内存。每一个有size字节，初始化为0。
+void *calloc(size_t num, size_t size)
+</code></pre><p>realloc</p>
+<pre><code>// 将ptr指向的block的大小改为size。
+// 可能会将这个block移动到一个新的地址。
+// block的内容会保留新的大小和旧的大小中较小者。
+// 如果新的大小更大，那么多出来的是未定义的。
+// 如果ptr==NULL，等价于malloc
+void *realloc(void *ptr, size_t size);
+</code></pre><p>atoi</p>
+<pre><code>int atoi(const char *str);
+</code></pre><p>atof</p>
+<pre><code>double atof(const char *str);
+</code></pre><p>atol</p>
+<pre><code>long int atol(const char *str);
+</code></pre><p>strtol</p>
+<pre><code>// base是进制
+long int strtol(const char *str, char **endptr, int base)
+</code></pre><p>Example:</p>
+<pre><code>char str[] = &quot;2001 60cf2d -1100110010 0x6fff&quot;;
+long int a,b,c,d;
+char *sp;
+a = strtol(str, &amp;sp, 10);
+b = strtol(sp, &amp;sp, 16);
+c = strtol(sp, &amp;sp, 2);
+d = strtol(sp, NULL, 0);
+</code></pre><p>strtoul</p>
+<pre><code>unsigned long int strtoul(const char *str, char **endptr, int base);
+</code></pre><p>strtod</p>
+<pre><code>double strtod(const char *str, char **endptr);
+</code></pre><p>printf</p>
+<pre><code>// Format: %[flags][width][.precision][length]specifier
+
+/**
+ * specifier
+ * d/i 有符号十进制整数
+ * u 无符号十进制整数
+ * o 无符号八进制
+ * x 无符号十六进制整数
+ * X 同上，但是X大写
+ * f/F 浮点数 小写/大写
+ * e/E 科学计数法 小写/大写
+ * g/G use the shortest representation: (%e or %f / %E or %F)
+ * p pointer address
+ */
+
+/**
+ * Flags
+ * - 左对齐
+ * + 强制显示+-号
+ * (space) 如果没有符号位可写，加空格
+ * # (oxX)会打出(0,0x,0X), (aef)会打出小数点
+ */
+
+/**
+ * width
+ * (number) number较大将显示的位数补空格。number小则无影响
+ * * 在...中给出
+ */
+
+/**
+ * .precision
+ * (number) (ef)保留位数。s打印个数
+ * (.*) ...中给出
+ */
+
+/**
+ * length
+ * l long
+ * h short
+ * U long long
+ * z size_t
+ */
+
+int printf(const char *format, ...);
+</code></pre><h2 id="sys-time-h">sys/time.h</h2>
+<p>gettimeofday</p>
+<pre><code>// tzp = NULL
+// 返回从1970.1.1 00:00 UTC 到现在的秒数
+int gettimeofday(struct timeval *tp, void *tzp);
+struct timeval {
+  __time_t tv_sec;
+  __suseconds_t tv_usec;
+}
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

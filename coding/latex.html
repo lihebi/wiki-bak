@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><pre><code>\begin{enumerate}{\IEEEsetlabelwidth{12}}
+\item xxx
+\item xxx
+\item xxx
+\end{enumerate}
+</code></pre><h2 id="-latex-">在latex中写中文</h2>
+<p><code>fc-list</code> 可以查看当前安装的字体。</p>
+<pre><code>\documentclass{article}
+\usepackage{fontspec}
+\setromanfont{LiHei Pro} % 俪黑Pro
+\setmonofont{Courier New} % 等宽字型
+\XeTeXlinebreaklocale &quot;zh&quot;
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\begin{document}
+
+在Mac下的XeTeX里写中文~
+
+\end{document}
+</code></pre><p>其中有两行line break的设定是为了解决XeTeX中文的断行问题，
+其余的部份就是用fontspec package来设定字型。
+romanfont是默认使用的字型，
+monofont是默认的等宽字，不指定的话只要用到等宽字就会看到乱码</p>
+<p>要用xelatex编译</p>
+</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

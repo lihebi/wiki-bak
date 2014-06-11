@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="mac">Mac</h2>
+<pre><code>sudo apachectl start # start and enable start at boot
+sudo touch /etc/apache2/users/hebi.conf
+sudo chown root:wheel /etc/apache2/users/hebi.conf
+sudo apachectl restart # now can browse: localhost/~hebi
+</code></pre><p>hebi.conf</p>
+<pre><code>&lt;Directory &quot;/Users/yourusername/Sites/&quot;&gt;
+  Options Indexes MultiViews
+  AllowOverride None
+  Order allow,deny
+  Allow from all
+&lt;/Directory&gt;
+</code></pre><h4 id="enable-php-for-apache">enable php for apache</h4>
+<p>in httpd.conf, uncomment the line for include php lib, than restart</p>
+<p>index.php</p>
+<pre><code>&lt;?php echo phpinfo() ?&gt;
+</code></pre><h4 id="xampp">xampp</h4>
+<p>好吧，我承认这个真的很方便。
+使用dmg安装，不会和原来的冲突，所有文件，应用，配置，站点全都放在/Application/XAMPP中。
+默认已经开启了php支持。在etc中有httpd的配置文件和php.ini。</p>
+<p>安装mongo支持：</p>
+<pre><code>sudo /Applications/XAMPP/xamppfiles/bin/pecl install mongo
+</code></pre><p>会把mongo.so装在</p>
+<p><code>/Applications/XAMPP/xamppfiles/lib/php/extensions/no-debug-non-zts-20121212/</code></p>
+<p>中，要编辑</p>
+<p><code>/Applications/XAMPP/xamppfiles/etc/php.ini</code>:</p>
+<pre><code>extension=mongo.so
+</code></pre><p>默认localhost访问点是</p>
+<p><code>/Applications/XAMPP/xamppfiles/htdocs</code></p>
+<h4 id="-mongodb">安装mongodb</h4>
+<p>下载tgz包，解压，放到<code>~/Applications/mongodb</code>或任何一个地方。在里面根目录新建一个mongod.conf:</p>
+<pre><code># default port: 27017
+port=27017
+
+# default is false
+verbose=true
+
+# limit max connection, cant set more than 20000
+# maxConns=50
+
+logpath=/var/log/mongodb.log
+logappend=true
+
+# default is /data/db
+dbpath=/var/lib/mongodb
+#auth=true
+</code></pre><p>添加一个launchdaemon。</p>
+<p><code>/Library/LaunchDaemons/org.mongo.mongod.plist</code>:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+    &lt;key&gt;Label&lt;/key&gt;
+    &lt;string&gt;org.mongodb.mongod&lt;/string&gt; &lt;!-- the label --&gt;
+    &lt;key&gt;RunAtLoad&lt;/key&gt;
+    &lt;true/&gt;
+    &lt;key&gt;ProgramArguments&lt;/key&gt;
+    &lt;array&gt;
+        &lt;string&gt;/Users/hebi/Applications/mongodb/bin/mongod&lt;/string&gt;
+        &lt;string&gt;run&lt;/string&gt; &lt;!-- important --&gt;
+        &lt;string&gt;--config&lt;/string&gt;
+        &lt;string&gt;/Users/hebi/Applications/mongodb/mongod.conf&lt;/string&gt;
+    &lt;/array&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre><p>shell:</p>
+<pre><code>  sudo touch /var/log/mongodb.log
+  sudo mkdir /var/lib/mongodb
+  sudo chown root:wheel /Library/LaunchDaemons/org.mongodb.mongod.plist
+  sudo launchctl load /Library/LaunchDaemons/org.mongodb.mongod.plist
+  sudo launchctl start org.mongodb.mongod
+
+  ps -eaf | grep mongod
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

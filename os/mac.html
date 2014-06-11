@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">终端</h1>
+<pre><code>alias google-chrome=&#39;open -a Google\ Chrome&#39;
+</code></pre><p>让spotlight重新建立索引：</p>
+<pre><code>sudo mdutil -e / # 建立整个硬盘
+sudo mdutil -e /Volumn/MyVolumn ＃ 针对单个volumn，应该可以对任意一个文件夹
+</code></pre><h1 id="-">软件</h1>
+<h2 id="font-book">font-book</h2>
+<p>有很多字体可以预览，通过它还可以装字体。</p>
+<h2 id="digitalcolor-meter">DigitalColor Meter</h2>
+<p>屏幕取色。如果CSS要使用rgba，则选择sRGB的值。</p>
+<h2 id="iterm">iterm</h2>
+<p>快捷键</p>
+<p><code>cmd+enter</code> full screen</p>
+<p><code>cmd+/</code> cursor</p>
+<p><code>option+cmd+b</code>: 回放</p>
+<p><code>shift+cmd+d</code>横向分割</p>
+<p><code>md+d</code> 纵向</p>
+<h2 id="zsh">zsh</h2>
+<p>虽然不是mac的专利，但是我认识它是在这。使用它的原因是有oh-my-zsh。一定要结合autojump使用。
+确实一个人必须经历过足够的麻烦才会意识到简洁的珍贵。
+这和使用一门语言，最好先自己去实现所要的功能，才能体会到别人维护很多年的库的来之不易。
+且行且珍惜。</p>
+<pre><code>cat /etc/shells
+chsh -s /bin/zsh
+</code></pre><h3 id="install-oh-my-zsh">Install oh-my-zsh</h3>
+<pre><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+</code></pre><h3 id="autojump">Autojump</h3>
+<p>Install</p>
+<pre><code>brew install autojump
+</code></pre><p>in <code>.zshrc</code></p>
+<pre><code>plugins = (..., autojump)
+</code></pre><p>autojump支持的功能：</p>
+<pre><code>j xxx # 进入目录。会自动学习你进过的目录，并且只要输个大概就可以了。
+
+.. &amp; ... &amp; / &amp; ~ &amp; - # 不用cd了
+
+ls -l **/*.sh
+</code></pre><h2 id="homebrew">homebrew</h2>
+<p>在github上大概前十的。装软件不用sudo。</p>
+<pre><code>brew install xxx
+brew uninstall xxx
+brew search xxx
+brew --prefix
+</code></pre><p>homebrew install in <code>/usr/local/Celler/…</code>
+it create symbol links in <code>/usr/local/bin/…</code></p>
+<h2 id="keyremap4macbook-pckeyboardhack">KeyRemap4MacBook &amp;&amp; PCKeyboardHack</h2>
+<p>System Preference ==&gt; Keyboard ==&gt; modifier ==&gt; Caps Lock无操作。
+再用PCKeyboardHack改掉</p>
+<h2 id="alfred">Alfred</h2>
+<p>Workflow -&gt; script filter -&gt; bash</p>
+<pre><code>cat&lt;&lt;EOF
+&lt;items&gt;
+
+&lt;item&gt;
+&lt;title&gt;Chrome书签&lt;/title&gt;
+&lt;icon&gt;icon.png&lt;/icon&gt;
+&lt;/item&gt;
+
+&lt;item&gt;
+xxx
+&lt;/item&gt;
+
+&lt;/items&gt;
+EOF
+</code></pre><h2 id="tunnel-blick">Tunnel Blick</h2>
+<p>软件有<code>Installer</code>和<code>Uninstaller</code>。</p>
+<p>使用<code>3.4 beta</code>而不是<code>3.3.2</code>。</p>
+<p>在10.10中，连上就会断开。解决方法：</p>
+<ul>
+<li>域名服务器设置为<code>3.1</code></li>
+<li>或，高级，去掉勾选“连接或断开后，清空DNS缓存”</li>
+</ul>
+</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

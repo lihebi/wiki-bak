@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="-">遍历文件夹</h2>
+<pre><code>import os
+for root, dirs, files in os.walk(‘.’):
+for f in files:
+print f
+</code></pre><h2 id="range">range</h2>
+<pre><code>l = range(4, 10)
+</code></pre><h2 id="-">数字转换成字母</h2>
+<pre><code>for c in range(65, 91):
+print chr(c)
+
+for c in arange(65+32, 91+32):
+print chr(c)
+</code></pre><h2 id="-">字符串可以直接相加</h2>
+<pre><code>&#39;xxf&#39;+&#39;xxf&#39;
+</code></pre><h2 id="os-rename">os.rename</h2>
+<pre><code>os.rename(‘a.jpg’, ‘out/b.jpg’)
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

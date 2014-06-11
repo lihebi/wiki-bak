@@ -1,0 +1,58 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="palette-cmd-shift-p-">Palette (Cmd-Shift-p)</h2>
+<ul>
+<li>styleguide</li>
+</ul>
+<h2 id="package">Package</h2>
+<h2 id="package-create-tutorial">Package Create Tutorial</h2>
+<h3 id="-">创建工程</h3>
+<p><code>Package Generator: Generate Package</code></p>
+<p>now I have:</p>
+<ul>
+<li>a package located in <code>$HOME/.atom/packages/xxx</code></li>
+<li>command available <code>xxx:toggle</code></li>
+<li>when execute it, output <code>Alive</code> message</li>
+</ul>
+<h3 id="-">新的命令</h3>
+<p>lib/ascii-art.coffee</p>
+<pre><code>module.exports =
+  activate: -&gt;
+    atom.workspaceView.command &quot;ascii-art:convert&quot;, =&gt; @convert()
+
+  convert: -&gt;
+    # This assumes the active pane item is an editor
+    editor = atom.workspace.activePaneItem
+    editor.insertText(&#39;Hello, World!&#39;)
+</code></pre><h3 id="-">激活命令</h3>
+<p>package.json</p>
+<pre><code>&quot;activationEvents&quot;: [&quot;ascii-art:convert&quot;],
+</code></pre><h3 id="-">快捷键</h3>
+<p>keymaps/ascii-art.cson</p>
+<pre><code>&#39;.editor&#39;:
+  &#39;cmd-alt-a&#39;: &#39;ascii-art:convert&#39;
+</code></pre><h3 id="-window">重启window</h3>
+<p><code>window:reload</code>, then everything works.</p>
+<h3 id="ascii">ASCII</h3>
+<p>add figlet dependence</p>
+<pre><code>&quot;dependencies&quot;: {
+   &quot;figlet&quot;: &quot;1.0.8&quot;
+}
+</code></pre><p>modify <code>lib/ascii-art.coffee</code></p>
+<pre><code>convert: -&gt;
+  # This assumes the active pane item is an editor
+  editor = atom.workspace.activePaneItem
+  selection = editor.getSelection()
+
+  figlet = require &#39;figlet&#39;
+  figlet selection.getText(), {font: &quot;Larry 3D 2&quot;}, (error, asciiArt) -&gt;
+    if error
+      console.error(error)
+    else
+      selection.insertText(&quot;\n#{asciiArt}\n&quot;)
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

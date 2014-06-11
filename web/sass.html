@@ -1,0 +1,130 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><p>你还在用CSS?
+呵呵,你在写几百行的snippet吗?</p>
+<p>This is where <code>Sass</code> comes in!</p>
+<h1 id="-">安装 &amp; 运行</h1>
+<pre><code class="lang-sh">gem install sass
+sass input.sass output.css
+sass --watch input.scss:output.css
+# watch 整个目录
+sass --watch app/sass:public/stylesheets
+</code></pre>
+<h1 id="-">基础</h1>
+<h2 id="-">变量</h2>
+<p>Sass</p>
+<p><code>$</code>定义变量</p>
+<pre><code class="lang-sass">$font-stack:    Helvetica, sans-serif
+$primary-color: #333
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+</code></pre>
+<p>Css</p>
+<pre><code class="lang-css">body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+</code></pre>
+<h2 id="-">嵌套</h2>
+<pre><code class="lang-sass">nav
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+
+  li
+    display: inline-block
+
+  a
+    display: block
+    padding: 6px 12px
+    text-decoration: none
+</code></pre>
+<h2 id="import">import</h2>
+<p>片段一般使用下划线开头,这告诉sass不要编译这个文件为CSS.</p>
+<p>_reset.sass</p>
+<pre><code class="lang-sass">html,
+body,
+ul,
+ol
+  margin:  0
+  padding: 0
+</code></pre>
+<p>包含用@import关键字,不需要写文件后缀名.</p>
+<p>base.sass</p>
+<pre><code class="lang-sass">@import reset
+
+body
+  font-size: 100% Helvetica, sans-serif
+  background-color: #efefef
+</code></pre>
+<h2 id="mixin-">Mixin 混入类</h2>
+<p>Sass</p>
+<pre><code class="lang-sass">=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+
+.box
+  +border-radius(10px)
+</code></pre>
+<h2 id="-">继承</h2>
+<p>Sass</p>
+<pre><code class="lang-sass">.message
+  border: 1px solid #ccc
+  padding: 10px
+  color: #333
+
+.success
+  @extend .message
+  border-color: green
+
+.error
+  @extend .message
+  border-color: red
+
+.warning
+  @extend .message
+  border-color: yellow
+</code></pre>
+<h2 id="-">运算</h2>
+<p>Sass</p>
+<pre><code class="lang-sass">.container
+  width: 100%
+
+article[role=&quot;main&quot;]
+  float: left
+  width: 600px / 960px * 100%
+
+aside[role=&quot;complimentary&quot;]
+  float: right
+  width: 300px / 960px * 100%
+</code></pre>
+<h1 id="-">其他</h1>
+<h2 id="sass-scss">Sass &amp; Scss</h2>
+<p>Sass</p>
+<pre><code class="lang-sass">$font-stack:    Helvetica, sans-serif
+$primary-color: #333
+
+body
+  font: 100% $font-stack
+  color: $primary-color
+</code></pre>
+<p>Scss</p>
+<pre><code class="lang-scss">$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+</code></pre>
+</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

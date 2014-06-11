@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">服务端</h1>
+<p>环境：ubuntu14.04</p>
+<h2 id="install-packages">install packages</h2>
+<pre><code>apt-get update
+apt-get upgrade
+apt-get install openvpn
+apt-get install easy-rsa
+</code></pre><h2 id="easy-rsa">easy-rsa</h2>
+<pre><code>cp -r /usr/share/easy-rsa /etc/openvpn/
+cd /etc/openvpn/easy-rsa
+ln -s openssl-1.0.0.cnf openssl.conf
+# config here
+. vars
+# this will rm keys dir
+. clean-all
+. build-ca
+
+# need &#39;y&#39;
+. build-key-server server
+# need &#39;y&#39;
+. build-key client1 # one user a time
+# 2048 if 64 bit
+. build-dh
+
+# optional: revoke user
+. vars
+. revoke-full client1
+</code></pre><h2 id="key-files">key files</h2>
+<p>Client Side files: <code>ca.crt</code>, <code>client1.crt</code>, <code>client1.key</code></p>
+<pre><code>cd keys
+cp ca.crt ca.key dh2048.pem server.crt server.key /etc/openvpn/
+</code></pre><h2 id="config">config</h2>
+<pre><code>cd /usr/share/doc/openvpn/examples/sample-config-files/
+cp server.conf.gz client.conf ~
+cd ~
+gunzip server.conf.gz
+mv server.conf /etc/openvpn
+</code></pre><p>client.conf:</p>
+<pre><code>remote example.com 1194
+ca ca.crt
+cert client1.crt
+key client1.key
+</code></pre><p>server.conf:</p>
+<pre><code>dh2048.pem # if build-dh use 64bit
+</code></pre><h2 id="start-service">start service</h2>
+<pre><code>service openvpn start
+</code></pre><h2 id="forward-config">forward config</h2>
+<p>/etc/openvpn/server.conf</p>
+<pre><code>push &quot;redirect-gateway def1 bypass-dhcp&quot;
+</code></pre><p>/etc/sysctl.conf</p>
+<pre><code>net.ipv4.ip_forward=1
+</code></pre><p>in shell:</p>
+<pre><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+</code></pre><h2 id="iptables">iptables</h2>
+<p>/etc/rc.local</p>
+<pre><code>iptables -A FORWARD -m state --state RELATED,ESTABLISHED -j ACCEPT
+iptables -A FORWARD -s 10.8.0.0/24 -j ACCEPT
+iptables -A FORWARD -j REJECT
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+iptables -A INPUT -i tun+ -j ACCEPT
+iptables -A FORWARD -i tun+ -j ACCEPT
+iptables -A INPUT -i tap+ -j ACCEPT
+iptables -A FORWARD -i tap+ -j ACCEPT
+
+exit 0
+</code></pre><h2 id="dns">dns</h2>
+<pre><code>apt-get install dnsmasq resolvconf
+</code></pre><p>/etc/dnsmasq.conf</p>
+<pre><code>listen-address=127.0.0.1,10.8.0.1
+bind-interfaces
+</code></pre><p>/etc/network/interfaces: # optional</p>
+<pre><code>auto eth0
+iface eth0 inet dhcp
+
+dns-search members.linode.com
+dns-nameservers 97.107.133.4 207.192.69.4 207.192.69.5
+</code></pre><p>/etc/rc.local</p>
+<pre><code>/etc/init.d/dnsmasq start
+exit 0
+</code></pre><p>/etc/openvpn/server.conf:</p>
+<pre><code>push &quot;dhcp-option DNS 10.8.0.1&quot;
+</code></pre><p>reboot!</p>
+<h1 id="client-side">client side</h1>
+<h2 id="-">文件</h2>
+<ul>
+<li>client.conf</li>
+<li>ca.crt</li>
+<li>client1.key</li>
+<li>client1.crt</li>
+</ul>
+<h2 id="mac">mac</h2>
+<p>tunnelblick</p>
+<h2 id="windows">windows</h2>
+<p>use openvpn gui, stable version, installation package
+(both 32-bit and 64-bit TAP driver included)
+openvpn-2.0.9-gui-1.0.3-install.exe</p>
+<ul>
+<li><code>/etc/openvpn/server.conf</code>, remove the <code>bypass-dhcp</code> in push directive</li>
+<li>in client.ovpn, add <code>route-method exe</code> in the end</li>
+</ul>
+</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

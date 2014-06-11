@@ -1,0 +1,63 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">函数</h1>
+<h2 id="-">函数定义</h2>
+<pre><code>function xxx() {}
+</code></pre><p>在程序load的时候，就将这个名称加载到内存，所以在其上面可以直接使用了。</p>
+<pre><code>var func = function xxx() {}
+</code></pre><p>只有执行到这句的时候才会存在，所以在上面不能执行func或xxx。</p>
+<h2 id="-">函数调用</h2>
+<p>每个函数接受两个附加参数: this和arguments.
+this的值取决于调用模式.</p>
+<h3 id="-">方法调用模式</h3>
+<p>函数被保存为对象的属性,我们称之为方法.
+当方法被调用时,this被绑定到该对象.</p>
+<h3 id="-">函数调用模式</h3>
+<p>如果一个函数并非一个对象的属性,那么它就是被当做一个函数来调用.
+此时this被绑定到全局对象.
+这是语言设计的错误.
+典型的结果是内部函数的this没有绑定到外部函数的this.</p>
+<pre><code class="lang-js">myObject.double = function(){
+  var helper = function() {
+    this.value = 3;
+  };
+}
+</code></pre>
+<p>此时内部函数helper无法访问myObject的属性.</p>
+<p>解决方法:</p>
+<pre><code class="lang-js">myObject.double = function(){
+  var that = this;
+  var helper = function() {
+    that.value = 3;
+  };
+}
+</code></pre>
+<h3 id="-">构造器调用模式</h3>
+<p>如果在一个函数前面加上<code>new</code>来调用,
+那么背地里会创建一个连接到该函数的<code>prototype</code>成员的新对象,
+同时this会被绑定到新对象上.</p>
+<p>一个函数,如果创建的目的是希望结合new前缀来调用,那么它就被称为构造器函数.
+按照约定,它们保存在以大写格式命名的变量里.</p>
+<pre><code class="lang-js">var Quo = function(string) {
+  this.status = string;
+};
+Quo.prototype.get_status = function() {
+  return this.status;
+};
+var myQuo = new Quo(&quot;confused&quot;);
+</code></pre>
+<h3 id="apply-">apply调用模式</h3>
+<p>函数可以有方法.apply就是函数的方法.</p>
+<p>apply接受两个参数,第一个是要绑定给this的值,第二个是参数数组.</p>
+<h2 id="number">Number</h2>
+<pre><code>Number.parseInt(string, radix)
+</code></pre><h2 id="string">String</h2>
+<h4 id="slice">slice</h4>
+<pre><code>str.slice(begin, end)
+‘hello world’.slice(0, -2) ==&gt; ‘hello wor’
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

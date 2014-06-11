@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h1 id="-">文档结构</h1>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf8&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    &lt;section&gt;
+      &lt;header&gt;
+      &lt;/header&gt;
+    &lt;/section&gt;
+    &lt;script src=“xxx”&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h1 id="-">技巧</h1>
+<p>链接在新窗口中打开</p>
+<pre><code>`target=&#39;_blank&#39;`
+</code></pre><p>用户可以选择多个文件</p>
+<pre><code>&lt;input type=&quot;file&quot; id=&quot;file-select&quot; name=&quot;photos[]&quot; multiple/&gt;
+</code></pre><h1 id="html5-">html5标签</h1>
+<h2 id="header">header</h2>
+<p>介绍</p>
+<pre><code class="lang-html">&lt;header&gt;&lt;/header&gt;
+</code></pre>
+<h2 id="nav">nav</h2>
+<p>是一个section. 包含指向其他页面,或者本页面其他section的链接.</p>
+<pre><code class="lang-html">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+<h2 id="section">section</h2>
+<p>关于一个主题的一组内容</p>
+<pre><code class="lang-html">&lt;section&gt;
+  &lt;header&gt;xxx&lt;/header&gt;
+  &lt;p&gt;xxx&lt;/p&gt;
+&lt;/section&gt;
+</code></pre>
+<h2 id="article">article</h2>
+<p>独立的文章</p>
+<p>判断是否要用article的方法: 看它的内容自己本身是不是make sense.
+例如,当他被单独订阅时,读者能否看的懂.</p>
+<pre><code class="lang-html">￼&lt;section&gt;
+  &lt;header&gt;
+    &lt;h1&gt;ACC Basketball News&lt;/h1&gt;
+  &lt;/header&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h1&gt;UNC Beats Duke In Championship Game!&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;p&gt;The Blue Devils are routed by the Tarheels at Cameron Indoor Stadium.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<h2 id="aside">aside</h2>
+<p>与article相关但是对于它的理解又不是必须的.</p>
+<pre><code class="lang-html">&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;UNC Beats Duke In Championship Game&lt;/h1&gt;
+  &lt;/header&gt;
+    &lt;p&gt;The Blue Devils are routed by the Tarheels at
+    Cameron Indoor Stadium.&lt;/p&gt;
+    &lt;aside&gt;
+      &lt;p&gt;Former Duke Players Cry at Game’s End&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/article&gt;
+</code></pre>
+<h2 id="footer">footer</h2>
+<p>结束一个section的信息</p>
+<pre><code class="lang-html">&lt;footer&gt;
+  &lt;h3&gt;Talk to Me Goose&lt;/h3&gt;
+  &lt;p&gt;&amp;copy; 2011 Maverick &amp; Goose Ventures.&lt;/p&gt;
+&lt;/footer&gt;
+</code></pre>
+<p>header 和 footer 可以用在section的开始或结束</p>
+</div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>

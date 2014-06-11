@@ -1,0 +1,154 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf8"><title>Post</title><link href="http://cdn.bootcss.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"><link href="http://cdn.bootcss.com/prettify/r298/prettify.min.css" rel="stylesheet"><link href="/css/main.css" rel="stylesheet"><script src="http://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script></head><body><div class="narrow"><h2 id="api">API</h2>
+<p>socket</p>
+<pre><code>// domain: AF_INET(IPv4), AF_INET6(IPv6)
+// type: SOCK_STREAM, SOCK_DGRAM
+// protocol: end-to-end protocol. IPPROTO_TCP, IPPROTO_UDP
+int socket(int domain, int type, int protocol);
+</code></pre><p>inet_pton</p>
+<pre><code>// src: &quot;192.168.1.1&quot;
+// dst: *数字
+inet_pton(int addressFamily, const char *src, void *dst);
+</code></pre><p>inet_ntop</p>
+<pre><code>// 数字 =&gt; &quot;192.168.1.1&quot;
+// socklen_t: INET_ADDRSTRLEN IPv4可能最长的结果字符串（字节）
+const char *inet_ntop(int addressFamily, const void *src, char *dst, socklen_t dstBytes);
+</code></pre><p>htons</p>
+<pre><code>// convert hostshort from host byte order to network byte order.
+uint16_t htons(unit16_t hostshort);
+</code></pre><p>connect</p>
+<pre><code>// foreignAddr: (struct sockaddr *)&amp;[sockaddr_in]
+// addressLength: sizeof(struct sockaddr_in);
+int connect(int socket, const struct sockaddr *foreignAddress, socklen_t addressLength);
+</code></pre><h4 id="server">Server</h4>
+<p>bind</p>
+<pre><code>int bind(int socket, struct sockaddr *localAddress, socklen_t addressSize);
+</code></pre><p>listen</p>
+<pre><code>// 告诉TCP实现允许来自客户的连接
+// 调用之前，任何连接请求被无声拒绝
+int listen(int socket, int queueLimit);
+</code></pre><p>accept</p>
+<pre><code>// 使套接字队列中的下一条连接出队。若队列空，则阻塞。
+int accept(int socket, struct sockaddr *clientAddress, socklen_t *addressLength);
+// 正确的使用方式：
+struct sockaddr_storage address;
+socklen_t addrLength = sizeof(address);
+int clntSock = accept(sock, &amp;address, &amp;addressLength);
+// 其中结构体定义如下
+struct sockaddr_storage {
+  sa_familiy_t
+  ... // Padding and fields to get correct length and allignment
+}; // 通用地址存储器
+</code></pre><p>send</p>
+<pre><code>// 默认阻塞到发送了所有的数据为止。
+// 返回：发送的字节数
+// flags：改变默认行为。默认为0.
+ssize_t send(int socket, const void *msg, size_t msgLength, int flags);
+</code></pre><p>recv</p>
+<pre><code>// 默认阻塞到至少传输了一些字节为止。
+// 返回：接受的字节数
+ssize_t recv(int socket, void *rcvBuffer, size_t bufferLength, int flags);
+</code></pre><h2 id="code-snippets">Code Snippets</h2>
+<h4 id="tcp-client">TCP client</h4>
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt; // for memset
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;netinet/in.h&gt; // for IPPROTO_TCP
+#include &lt;unistd.h&gt; // for close. use `man close`
+#include &lt;arpa/inet.h&gt;
+
+#define BUFFER_SIZE 30
+
+int main() {
+
+  // 创建socket
+  int sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+  // 构造servAddr
+  char *servIP = &quot;127.0.0.1&quot;;
+  in_port_t servPort = 8080;
+  struct sockaddr_in servAddr;
+  memset(&amp;servAddr, 0, sizeof(servAddr));
+  servAddr.sin_family = AF_INET;
+  // IP地址格式转换
+  inet_pton(AF_INET, servIP, &amp;servAddr.sin_addr.s_addr);
+  servAddr.sin_port = htons(servPort);
+
+  // 建立连接
+  connect(sock, (struct sockaddr *)&amp;servAddr, sizeof(servAddr));
+
+  char str[] = &quot;Hello&quot;;
+  size_t size = strlen(str);
+  // 发送数据
+  send(sock, str, size, 0);
+
+  char buffer[BUFFER_SIZE];
+  // 接收返回的数据，放到buffer里
+  recv(sock, buffer, BUFFER_SIZE-1, 0);
+
+  // 关闭socket
+  close(sock);
+
+}
+</code></pre><h4 id="tcp-server">TCP server</h4>
+<pre><code>#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt; // for memset
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;netinet/in.h&gt; // for IPPROTO_TCP
+#include &lt;unistd.h&gt; // for close. use `man close`
+
+#define BUFSIZE 30
+
+void handle(int clntSock) {
+  char buffer[BUFSIZE];
+  // 从client端socket接收数据，存入buffer，返回接受长度。一次只收BUFSIZE个字节。
+  ssize_t numBytesRcvd = recv(clntSock, buffer, BUFSIZE, 0);
+  // 循环接收直到收完为止。
+  while(numBytesRcvd&gt;0) {
+    // 将接收到的buffer，send到client端buffer
+    send(clntSock, buffer, numBytesRcvd, 0);
+    // 接着接收没收完的。
+    numBytesRcvd = recv(clntSock, buffer, BUFSIZE, 0);
+  }
+  // 关闭socket
+  close(clntSock);
+}
+
+int main(){
+  // 创建socket
+  int servSock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+  // 构造servAddr
+  in_port_t servPort = 8080;
+  struct sockaddr_in servAddr;
+  memset(&amp;servAddr, 0, sizeof(servAddr));
+  servAddr.sin_family = AF_INET;
+  servAddr.sin_addr.s_addr = htonl(INADDR_ANY); // any incoming interface
+  servAddr.sin_port = htons(servPort);
+
+  // socket绑定到servAddr
+  bind(servSock, (struct sockaddr *)&amp;servAddr, sizeof(servAddr));
+
+  // 监听socket
+  listen(servSock, 5);
+
+  for(;;) {
+    struct sockaddr_in clntAddr;
+    socklen_t clntAddrLen = sizeof(clntAddr);
+    // 接受socket来的请求，把来的socket存入clntSock
+    int clntSock = accept(servSock, (struct sockaddr *)&amp;clntAddr, &amp;clntAddrLen);
+    // 处理之
+    handle(clntSock);
+  }
+}
+</code></pre></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-50872903-1', 'lihebi.com');
+ga('send', 'pageview');
+</script><script src="http://cdn.bootcss.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script src="http://cdn.bootcss.com/prettify/r298/prettify.min.js"></script><script src="http://cdn.bootcss.com/keymaster/1.6.1/keymaster.min.js"></script></body></html>
