@@ -1,7 +1,8 @@
 # Usage
 
+build to sites/
+
 ```
-./compile
 grunt build
 ```
 

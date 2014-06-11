@@ -7,7 +7,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-usemin')
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-shell');
   var config = {
     app: 'sites',
     dist: 'dist'
@@ -58,12 +59,21 @@ module.exports = function (grunt) {
       options: {
         // assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
       },
-    html: ['sites/**/*.html'],
+      html: ['sites/**/*.html'],
       // css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
+    shell: {
+      listFolders: {
+        options: {
+          stderr: false
+        },
+        command: './compile'
+      }
+    }
   });
 
   grunt.registerTask('build', [
+  'shell',
   'useminPrepare',
   'concat',
   'cssmin',
