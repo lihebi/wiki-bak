@@ -68,6 +68,7 @@ for li in l
   do (li) ->
     fs.readFile 'posts/'+li, 'utf8', (err, data) ->
       content = marked data
+      #TODO parse liquid title
       options =
         content: content
         pretty: true

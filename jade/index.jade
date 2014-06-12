@@ -2,7 +2,7 @@ mixin lists(list, path)
   - each i in list
     - if (typeof(i) == 'string')
       .hebiitem
-        a.btn.btn-primary(href="#{path}#{i}")= i
+        a(href="#{path}#{i}")= i.slice(0,-5)
     - else
       .hebilead
         .hebilabel= i.name
