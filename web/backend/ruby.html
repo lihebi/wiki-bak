@@ -8,29 +8,24 @@
     <link href="/css/main.css" rel="stylesheet">
   </head>
   <body>
-    <div class="narrow"><h2 id="stdio-h">stdio.h</h2>
-<p>perror</p>
-<pre><code>void perror(const char *str);
-</code></pre><p>fflush</p>
-<pre><code>int fflush(FILE *stream);
-</code></pre><p>fopen</p>
-<pre><code>FILE *fopen(const char *filename, const char *mode);
-</code></pre><p>fclose</p>
-<pre><code>int fclose(FILE *stream);
-</code></pre><p>freopen</p>
-<pre><code>FILE *freopen(const char *filename, const char *mode, FILE *stream);
-</code></pre><p>fprintf</p>
-<pre><code>int fprintf(FILE *stream, const char *format, ...);
-</code></pre><p>fscanf</p>
-<pre><code>int fscanf(FILE *stream, const char *format, ...);
-</code></pre><h2 id="examples">examples</h2>
-<pre><code>#include &lt;stdio.h&gt;
+    <div class="narrow"><h2 id="rvm">RVM</h2>
+<pre><code>curl -L https://get.rvm.io | bash -s stable --autolibs=enabled —ruby —rails
 
-int main() {
-  FILE* p = fopen(&quot;a.txt&quot;, &quot;w&quot;);
-  fprintf(p, &quot;hello&quot;);
-  fclose(p);
-}
+# make sure dvm is up-to-date
+rvm get head
+
+# install a version of ruby
+rvm install ruby-1.9.3-p125
+# the same as
+dvm install 1.9.3 # dvm will fetch the latest patched version
+
+rvm list
+# use
+rvm use ruby-1.9.3-p125
+# the same as
+rvm 1.9.3
+# make 1.9.3 your default
+rvm 1.9.3 —default
 </code></pre></div>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

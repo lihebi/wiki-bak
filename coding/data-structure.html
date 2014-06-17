@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="-">树</h1>
+<h2 id="-">一些定义</h2>
+<ul>
+<li>满二叉树:全满.</li>
+<li>完全二叉树:只有最后一层不全满,但是是从左到右填满的.</li>
+</ul>
+<h2 id="-">一些性质</h2>
+<h3 id="-">完全二叉树</h3>
+<p>一个位置为<code>i</code>的节点,其左孩子为<code>2i</code>,父节点为&lfloor;i/2&rfloor;</p>
+<h2 id="-">二叉查找树</h2>
+<p>对于树中每一个节点，其左子树中所有关键字值小于该节点关键字值，右子树中所有关键字值大于之。</p>
+<h3 id="-">删除操作</h3>
+<ul>
+<li>若要删除的节点是一片树叶，直接删。</li>
+<li>若该节点有一个子节点，用该子节点代替它。</li>
+<li>若有两个子节点，使用其右子树中最小的数据代替该节点，再将那个最小的数据的节点（此时是空的）删除（它没有左子树）。</li>
+</ul>
+<p>如果删除的次数不多，通常使用<code>惰性删除</code>:当一个元素被删除时,它仍留在树中,只是做了删除的标记.</p>
+<h2 id="avl-">AVL树</h2>
+<p>带有平衡条件的二叉查找树.</p>
+<p>设计要点:</p>
+<ul>
+<li>平衡条件容易保持</li>
+<li>必须保证树的深度是<code>O(logN)</code></li>
+</ul>
+<p>常用的定义:每个节点的左子树和右子树的高度最多差1的二叉查找树.下图中左边是,右边不是.</p>
+<p><img src="/images/avl.gif" alt="img"></p>
+<p>插入节点时,树的平衡容易被破坏,要通过旋转操作修复.</p>
+<p>插入有四种情况:</p>
+<ul>
+<li>左左: 节点插入成左子树的左子树.</li>
+<li>右右</li>
+<li>左右: 节点插入成左子树的右子树</li>
+<li>右左</li>
+</ul>
+<p>1,2等价,3,4等价.</p>
+<p>1,2需要进行<code>单旋转</code>.3,4需要进行<code>双旋转</code></p>
+<h3 id="-">单旋转</h3>
+<p>下图中X比Z深2,需要修复.</p>
+<ul>
+<li>把<code>k1</code>拎起来</li>
+<li><code>Y</code>挂到<code>k2</code>的左子树上</li>
+</ul>
+<p><img src="/images/single.gif" alt="">)</p>
+<p>下面是一个实际的例子</p>
+<p><img src="/images/single2.gif" alt=""></p>
+<h3 id="-">双旋转</h3>
+<p>k2那个分支太深了,单旋转解决不了.双旋转修复法:</p>
+<ul>
+<li>把<code>k2</code>拎起来</li>
+<li><code>B</code>,<code>C</code>分别放到左右子树上.</li>
+</ul>
+<p><img src="/images/double.gif" alt=""></p>
+<p>下面是实际的例子.</p>
+<p><img src="/images/double2.gif" alt=""></p>
+<h1 id="-">堆</h1>
+<p>堆又叫<code>优先队列</code>.</p>
+<p>堆有至少如下操作:</p>
+<ul>
+<li>Insert</li>
+<li>DeleteMin</li>
+</ul>
+<p>一般的实现都使用<code>二叉堆</code>,经常把之简称<code>堆</code>.</p>
+<p>堆是一个<code>完全二叉树</code>.</p>
+<p><code>堆序性</code>:堆中每一个节点都小于或等于其后裔.最小元在根上.</p>
+<h2 id="insert">Insert</h2>
+<p>上滤:</p>
+<ul>
+<li>在该<code>完全二叉树</code>的下一个空闲位置建立一个空穴.</li>
+<li>如果<code>X</code>可以放入其中而不破坏<code>堆序性</code>,结束</li>
+<li>否则,将该空穴的父节点放过来,再尝试将<code>X</code>放入.</li>
+<li>循环.</li>
+</ul>
+<h2 id="deletemin">DeleteMin</h2>
+<p>下滤:</p>
+<ul>
+<li>将根删除</li>
+<li>将最后一个数据视为<code>X</code>,需要将它移动到一个正确的位置.</li>
+</ul>
+<p>所以步骤为:</p>
+<ul>
+<li>删根</li>
+<li>将<code>X</code>放入空穴,如果不破坏<code>堆序性</code>,结束</li>
+<li>否则,将空穴的子节点中最小的一个移入空穴,尝试将<code>X</code>放入新空穴</li>
+<li>循环</li>
+</ul>
+<h1 id="-">排序</h1>
+<h2 id="-">插入排序</h2>
+<p>在第<code>P</code>趟,将位置<code>P</code>上的元素向左移动到它在前<code>P+1</code>个元素的正确位置上.</p>
+<h2 id="-">希尔排序</h2>
+<p>又叫<code>缩小增量排序</code></p>
+<p>使用一个<code>增量序列</code>:<code>h1,h2,...,hk</code></p>
+<p><img src="/images/shell.jpeg" alt=""></p>
+<p>上图中,使用的增量序列是<code>1,3,5</code>.<br>每一行是一次排序.</p>
+<p>第一行中,对<code>1,6,11</code>,<code>2,7,12</code>,<code>3,8,13</code>等分别排序.</p>
+<p>第二行中,对<code>1,4,7,10</code>,<code>2,5,8,11</code>等单独排序.</p>
+<p>最坏复杂度:<code>O(N^2)</code>.但是好的增量序列往往比堆排序还快.</p>
+<h2 id="-">堆排序</h2>
+<p>建立N个元素的二叉堆,花费<code>O(N)</code>时间.</p>
+<p>然后执行N次<code>DeleteMin</code>操作输出结果,每次<code>O(N)</code>.</p>
+<p>总时间复杂度:<code>O(NlogN)</code></p>
+<h3 id="-">额外阅读</h3>
+<p><code>DeleteMin</code>输出结果时,要使用另一个数组.可以避免的.方法是将出来的放到最后新空出来的空穴中.<br>这样就会最终得到一个递减的序列.</p>
+<p>为了得到递增的序列,可以使用<code>max堆</code>,即根是最大的.</p>
+<h2 id="-">归并排序</h2>
+<p>基本操作是合并两个已经排序的表.</p>
+<pre><code>void MSort(ElementType A[], ElementType TmpArray[], int Left, int Right) {
+  int Center;
+  if (Left&lt;Right) {
+    Center = (Left+Right)/2;
+    MSort(A, TmpArray, Left, Center);
+    MSort(A, TmpArray, Center+1, Right);
+    Merge(A, TmpArrray, Center+1, Right);
+  }
+}
+</code></pre><p>Merge函数用来连接两个已经排序的表.</p>
+<p>最小的已排序的表是只包含一个元素的表.</p>
+<p>最坏情形的时间复杂度<code>O(NlogN)</code></p>
+<h2 id="-">快速排序</h2>
+<p>快速排序是在实践中最快的已知排序算法.</p>
+<p>平均运行时间<code>O(NlogN)</code>,最坏性能<code>O(N^2)</code>,但稍加努力就可以避免这种情况.</p>
+<p>步骤:</p>
+<ul>
+<li>在s中取任意一个元素<code>v</code>,称为枢纽元</li>
+<li>把s中比<code>v</code>小的放左边,比<code>v</code>大的放右边.</li>
+<li>对两边各进行快速排序</li>
+</ul>
+<h3 id="-">选取枢纽元</h3>
+<h4 id="-">错误的方法</h4>
+<p>使用第一个元素</p>
+<h4 id="-">安全的做法</h4>
+<p>随机选取.但是不好,随机数生成一般是昂贵的.</p>
+<h4 id="-">三数中值分割法</h4>
+<p>最好的方法是使用数组的中值,但是计算昂贵.</p>
+<p>一般选取左端,右端,中心位置这三个元素作为枢纽元.</p>
+<h3 id="-">分割策略</h3>
+<p>已知枢纽元,如何将小的放前面,大的放后面?</p>
+<ol>
+<li>将枢纽元与最后的元素交换</li>
+<li><code>i</code>指向第一个元素,<code>j</code>指向倒数第二个元素</li>
+<li>将<code>i</code>右移,移过比枢纽元小的元素.将<code>j</code>左移,移过比枢纽元大的元素</li>
+<li>当<code>i</code>和<code>j</code>都停止时,交换<code>i</code>和<code>j</code>的数据,并重复步骤<code>3</code></li>
+<li>当<code>i</code>和<code>j</code>交错了,即<code>i</code>跑到<code>j</code>的右侧了,将i的值和枢纽元交换</li>
+</ol>
+<h1 id="-">图</h1>
+<h2 id="-">一些定义</h2>
+<p><code>无向图是连通的</code>: 一个无向图,每一个顶点到其他顶点都存在一条路径<br><code>有向图是强连通的</code>: 具有如上性质的有向图.</p>
+<h2 id="-">拓扑排序</h2>
+<p>拓扑排序是对有向无圈图的顶点的一种排序,使得如果存在vi到vj的路径,那么在排序中vi在vj前面.</p>
+<p>也就是要满足课程先修得条件.</p>
+<h3 id="-">一个简单的算法</h3>
+<ol>
+<li>在图中找到一个入度为0的点</li>
+<li>将它的邻接点得入度--</li>
+<li>将它放入拓扑序列中</li>
+</ol>
+<pre><code>for(all vertex) {
+  v = findVertexOfIndegreeZero();
+  for each w adjacent to v {
+    Indegree[w]--;
+  }
+}
+</code></pre><p>使用队列的算法</p>
+<pre><code>q = createQueue(N);
+MakeEmpty(q);
+for each vertex v {
+  if (Indegree[v]==0) Enqueue(V,Q);
+}
+while(!IsEmpty(q)) {
+  v = Dequeue(q);
+  for each w adjacent to v {
+    if (--Indegree[v]==0) Enqueue(w,q);
+  }
+}
+</code></pre><h2 id="-">最短路径</h2>
+<p>单源最短路径问题: 从一个特定顶点s到该图种每个个顶点的最短路径.</p>
+<h3 id="-">无权最短路径</h3>
+<p>所有边的权值为1.</p>
+<p>对于每一个顶点,记录3个值:</p>
+<ul>
+<li>Known: 当前节点有没有被访问过.有则置1</li>
+<li>dv: 当前已知的最短距离</li>
+<li>pv: 路径的上一个节点</li>
+</ul>
+<p>一个不太好的算法</p>
+<ol>
+<li>取起始点,其dv设为0</li>
+<li>currDist递增,初值为0.</li>
+<li>将当前dv为currDist且没有访问过的节点,访问之: 设置其所有邻接节点的dv和pv;</li>
+<li>重复2</li>
+</ol>
+<pre><code>void Unweighted(Table t) {
+  int currDist;
+  Vertex v,w;
+  for (currDist=0;currDist&lt;Num; currDist++) {
+    for each vertex v {
+      if (!t[v].Known &amp;&amp; t[v].Disk == currDist) {
+        t[v].known = 1;
+        for each w adjacent to v {
+          if (t[w].dist == Infinity) {
+            t[w].dist = currDist+1;
+            t[w].path = v;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p>更好点的算法</p>
+<ol>
+<li>创建一个空队列,将初始节点放入</li>
+<li>队列出队,访问: 设置所有邻接点得dv和pv; 将所有邻接点加入队列</li>
+<li>重复2</li>
+</ol>
+<pre><code>void Unweighted(Table t) {
+  Queue q;
+  Vertex v,w;
+  q = CreateQueue(N);
+  MakeEmpty(q);
+  Enqueue(s,q);
+  while(!IsEmpty(q)) {
+    v = Dequeue(Q);
+    t[v].known = 1;
+    for each w adjacent to v {
+      if (t[w].dist == Infinity) {
+        t[w].dist = t[v].dist + 1;
+        t[w].path = v;
+        Enqueue(W,Q);
+      }
+    }
+  }
+}
+</code></pre><h3 id="-">赋权最短路径</h3>
+<p>解决单源最短路径问题的一般方法叫做<code>Dijkstra算法</code>.</p>
+<ol>
+<li>选取一个起始点,标记其dv为0</li>
+<li>访问一个known为0的点,标记其known为1,更新其邻接的所有known为0的点得dv.</li>
+</ol>
+<h2 id="-">最小生成树</h2>
+<p>一般是在无向图中考虑.</p>
+<h3 id="prim-">Prim算法</h3>
+<p>步骤:</p>
+<ol>
+<li>选取一个初始点,做为树的根</li>
+<li>选取一个不在树中得点,要求: 它到树中得节点的距离是其他不在树中节点中最小的.</li>
+<li>将这个点加入树中.</li>
+</ol>
+<p>对每个节点,维护3个值:</p>
+<ul>
+<li>known</li>
+<li>dv: 该节点到树中节点的最短路径</li>
+<li>pv: 到哪个节点</li>
+</ul>
+<p>算法步骤:</p>
+<ol>
+<li>选初始点,放入树中当根</li>
+<li>对树中的但是known为0的点,去dv最小的一个,访问: known设为1; 更新其邻接的所有点得dv和pv;</li>
+</ol>
+<h3 id="kruskal-">Kruskal算法</h3>
+<p>在所有边上,选择最小的,如果它加入树中,不构成圈,则加入到树中.</p>
+<p>算法:</p>
+<ul>
+<li>把图种所有边,构建成一个堆</li>
+<li>不断DeleteMin,测试该边的两个顶点是否在同一个集合中.如果在,则不能添加,会成圈.不在,则加入.</li>
+</ul>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

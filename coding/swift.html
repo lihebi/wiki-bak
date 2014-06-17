@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="hello-wrold">Hello Wrold</h1>
+<p>不需要import额外的包，用于input，output和处理字符串。<br>全局范围的代码就是代码的entry，所以不用main函数。<br>不用冒号。</p>
+<pre><code>println(&quot;Hello World&quot;)
+</code></pre><h1 id="-">常量</h1>
+<p><code>nil</code>, <code>true</code>, <code>false</code></p>
+<h1 id="-">变量</h1>
+<pre><code>var variable = 50
+let constant = 40
+</code></pre><p>Swift是强类型的语言，值和类型必须一致。<br>但是，不必显示写出类型。<br>swift会从后面的值猜测类型，所以可以不写类型。如果值无法提供类型的准确猜测，可以指定：</p>
+<pre><code>let constant:Double = 70.0
+</code></pre><p>变量不会隐式转换类型，必须显示强制转换。</p>
+<pre><code>let str1 = &quot;ss &quot;
+let num1 = 34
+let num2 = 12
+let combine = str1+String(num1)
+</code></pre><p>在字符串中加入值的更简便的方式：</p>
+<pre><code>let combine2 = &quot;hello \(num1) world \(num1+num2)&quot;
+</code></pre><h1 id="-">数组</h1>
+<pre><code>var list = [&quot;hello&quot;, &quot;world&quot;]
+list[1] = &quot;world2&quot;
+</code></pre><p>建立空数组</p>
+<pre><code>let emptyArray = String[]()
+// 如果类型可以猜测
+let emptyArray = []
+</code></pre><h1 id="-">字典</h1>
+<pre><code>var dict = [
+  &quot;1&quot;:&quot;hello&quot;,
+  &quot;2&quot;:&quot;world&quot;,
+]
+dict[&quot;3&quot;] = &quot;hebi&quot;
+</code></pre><p>建立空字典</p>
+<pre><code>let emptyDict = Dictionary&lt;String, Float&gt;()
+// 如果类型可以猜测
+let emptyDict = [:]
+</code></pre><h1 id="-">控制流</h1>
+<h2 id="if-else">if &amp; else</h2>
+<p>条件表达式的括号是可选的。但是大括号是必须的。</p>
+<pre><code>if a &gt; 50 {
+  // xxx
+} else {
+  // xxx
+}
+</code></pre><p>条件表达式必须是条件，这意味着<code>if a</code>是错的。</p>
+<h3 id="-">可选值</h3>
+<p>可以使用<code>if</code>和<code>let</code>一起，来应对一些值缺失的情况。这些值就是可选值。<br>可选值要么包括一个值，要么包括<code>nil</code>。<br>在值的类型后面加上<code>?</code>来标记一个可选值。</p>
+<pre><code>var optionalName:String? = &quot;John&quot;
+var greeting = &quot;Hello&quot;
+if let name = optionalName {
+  greeting = &quot;Hello \(name)&quot;
+}
+</code></pre><h2 id="switch">switch</h2>
+<p>没有<code>default</code>语句会报错。<br>不需要<code>break</code>。<br>switch支持所有类型的数据而不限于<code>int</code>。<br>switch支持很大范围的比较操作，而不限于比较是否相等。</p>
+<pre><code>let a = &quot;Hello&quot;
+switch a {
+  case &quot;Hello&quot;:
+    xxx
+    xxx
+  case &quot;World&quot;,&quot;Man&quot;:
+    xxx
+    xxx
+  case let x where x.hasSuffix(&quot;eoll&quot;):
+    xxx
+  default:
+    xxx
+}
+</code></pre><h2 id="for-in">for in</h2>
+<pre><code>let dict = [
+  &quot;prime&quot;:[2,3,4,6,8,12],
+  &quot;fibo&quot;:[1,1,2,3,5,8],
+]
+for (kind, numbers) in dict {
+  for number in numbers {
+    // xxx
+  }
+}
+</code></pre><h2 id="while">while</h2>
+<pre><code>var n=2
+while n&lt;100 {
+  n = n*2
+}
+</code></pre><pre><code>var n=2
+do {
+  n = n*2
+} while n&lt;100
+</code></pre><h2 id="index-in-loop">index in loop</h2>
+<p><code>0..3</code>: 0,1,2<br><code>0...3</code>: 0,1,2,3</p>
+<pre><code>for i in 0..3 {
+  // i
+}
+</code></pre><p>和下面等价</p>
+<pre><code>for var i=0;i&lt;3;i++ {
+  // i
+}
+</code></pre><h1 id="-">函数</h1>
+<pre><code>func greet(name:String, day:String) -&gt; String {
+  return &quot;Hello \(name), today is \(day)&quot;
+}
+greet(&quot;Bob&quot;, &quot;Tuesday&quot;)
+</code></pre><p>使用一个tuple来return多个值</p>
+<pre><code>func returnTuple() -&gt; (Int, Int, Int) {
+  return (3,4,5)
+}
+</code></pre><p>参数不定长</p>
+<pre><code>func variableArg(numbers:Int...) -&gt; Int {
+  for number in numbers {
+    // number
+  }
+}
+</code></pre><p>函数可以嵌套</p>
+<pre><code>func outer() {
+  var y=10
+  func add() {
+    y += 5
+  }
+  add()
+}
+</code></pre><h2 id="-">函数使用和返回函数</h2>
+<p>函数是<code>first-class</code>类型，这意味着函数可以返回函数：</p>
+<pre><code>func makeFunc() -&gt; (Int -&gt; Int) {
+  func inner(num:Int) -&gt; Int {
+    return num+1
+  }
+  return inner
+}
+</code></pre><p>函数的参数也可以是函数</p>
+<pre><code>func funcWithFuncArg(list:int[], argFunc:Int -&gt; Bool) -&gt; Bool {
+  for item in list {
+    if argFunc(item) {
+      return true
+    }
+  }
+  return false
+}
+</code></pre><h2 id="-">函数闭包</h2>
+<p>函数是一个闭包。<br>闭包有一个简单的写法：不写名字，将代码写在<code>{}</code>之间。<br>使用<code>in</code>来隔离开<code>参数和返回值</code>以及<code>函数体</code></p>
+<pre><code>numbers.map({
+  (number:Int) -&gt; Int in
+    let result = 3*number
+    return result
+})
+</code></pre><p>甚至可以写得更精简。<br>如果一个闭包得类型已经知道了，例如<code>callback function for a delegate</code>。<br>这时，可以省去参数类型，返回值类型，或者都省去。<br>一个单一语句得闭包隐式地返回这个唯一语句的值。</p>
+<pre><code>numbers.map({number in 3*number})
+</code></pre><p>可以使用index来找到函数的参数</p>
+<pre><code>sort([1,5,3,8]) {$0&gt;$1}
+</code></pre></div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>

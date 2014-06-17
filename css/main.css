@@ -28,19 +28,28 @@ body > .hebilead {
   margin: 30px 10px;
   border: 1px solid red;
 }
-.btn {
-  margin: 10px 0;
+body > .hebilead > .hebilabel {
+  font-size: 22px;
+  color: red;
+}
+body > .hebiitem {
+  display: inline-block;
+}
+body > .hebilabel {
+  font-size: 22px;
+  color: green;
 }
 .hebilead {
   margin-left: 80px;
   position: relative;
   border: 1px solid green;
+  display: inline-block;
+  padding: 2px 3px;
 }
 .hebilabel {
   position: absolute;
   top: 50%;
   -webkit-transform: translateY(-50%);
-  margin-left: 10px;
 }
 .hebiitem {
   margin-left: 80px;
