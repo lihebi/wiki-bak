@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>Post</title>
+    <link rel="stylesheet" href="/css/app.css"/>
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="c-">C++</h1>
+<h1 id="tips">Tips</h1>
+<ul>
+<li><code>main</code>函数的返回类型必须是<code>int</code></li>
+<li>发出警告:<code>-Wall</code></li>
+<li><code>cin&gt;&gt;a</code>遇到<code>EOF</code>为假。遇到<code>&lt;C-D&gt;</code>为假。</li>
+<li><code>./a.out &lt;infile &gt;outfile</code></li>
+</ul>
+<h1 id="-">变量和基本类型</h1>
+<h2 id="-">类型</h2>
+<ul>
+<li>是用<code>char</code>时，需要明确指明<code>unsigned char</code>还是<code>signed char</code>，否则根据系统的不同而不同。</li>
+<li><code>long long</code>&gt;=<code>long</code>&gt;=<code>int</code>&gt;=<code>short</code><h3 id="-">如何选择类型</h3>
+</li>
+</ul>
+<ol>
+<li>若不为负，选unsigned</li>
+<li>用<code>int</code>和<code>long long</code>，而不用<code>long</code>,因为<code>long</code>一般和<code>int</code>一样。</li>
+<li>明确指定<code>char</code>的类型</li>
+<li>一般用<code>double</code>而不用<code>float</code></li>
+</ol>
+<h2 id="-">转义</h2>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\v</td>
+<td>纵向制表</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>退格</td>
+</tr>
+<tr>
+<td>\x加一个或多个16进制的数</td>
+<td></td>
+</tr>
+<tr>
+<td>\加1，2，3个8进制的数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-">字面值类型</h2>
+<p>前缀</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u</td>
+<td>Unicode16字符</td>
+<td>char16_t</td>
+</tr>
+<tr>
+<td>U</td>
+<td>Unicode32</td>
+<td>char32_t</td>
+</tr>
+<tr>
+<td>L</td>
+<td>宽字符</td>
+<td>wchar_t L&#39;a&#39;</td>
+</tr>
+<tr>
+<td>u8</td>
+<td>utf8字符串</td>
+<td>char u8&quot;hi&quot;</td>
+</tr>
+</tbody>
+</table>
+<p>后缀</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>类型</th>
+<th>适用于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U</td>
+<td>Unsigned</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>L</td>
+<td>long</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>LL</td>
+<td>long long</td>
+<td>整型</td>
+</tr>
+<tr>
+<td>F</td>
+<td>float</td>
+<td>浮点型</td>
+</tr>
+<tr>
+<td>L</td>
+<td>long double</td>
+<td>浮点型</td>
+</tr>
+</tbody>
+</table>
+<p>对象是指一块能存储数据并具有某种类型的内存空间。</p>
+<h2 id="-">初始化</h2>
+<pre><code class="lang-c">int a=0;
+int a={0};
+int a{0}; //C++11
+int a(0);
+</code></pre>
+<p>定义于任何函数体之 <em>外</em> 的 <em>内置类型变量</em> 被初始化为0.<br>定义于任何函数体之 <em>内</em> 的 <em>内置类型变量</em> 不初始化。</p>
+<p>string默认为空串。</p>
+<pre><code class="lang-c">extern int i; // 声明
+extern int i=1; // 定义，不可在函数体内部
+</code></pre>
+<h1 id="-">函数</h1>
+<h2 id="auto">auto</h2>
+<pre><code>auto g = bind(f, a, b, _2, c, _1);
+</code></pre><p>此后，调用<code>g(-1,-2)</code>等价于调用f，并把<code>_1</code>换成<code>-1</code>,<code>_2</code>换成<code>-2</code>。</p>
+<h2 id="at">at</h2>
+<p>适用于<code>string</code>,<code>vector</code>,<code>deque</code>,<code>array</code></p>
+<p><code>c.at(n)</code> 返回下表为<code>n</code>的元素的引用。如果下标越界，可以抛出<code>out_of_range</code>异常。</p>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-1', 'lihebi.com');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
