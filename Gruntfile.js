@@ -11,9 +11,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
   // grunt.loadNpmTasks('grunt-filerev');
   grunt.loadNpmTasks('grunt-rev');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   var config = {
-    app: 'sites',
-    dist: 'dist'
+    app: '',
+    dist: 'sites'
   };
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -91,6 +92,20 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    copy: {
+      main: {
+        files: [
+          {
+            expend: true,
+            src: [
+              'CNAME',
+              '404.html'
+            ],
+            dest: '<%= config.dist %>/'
+          }
+        ]
+      }
     }
   });
 
@@ -103,7 +118,8 @@ module.exports = function (grunt) {
   'uglify',
   // 'filerev',
   'rev',
-  'usemin'
+  'usemin',
+  'copy:main'
   ]);
 
   grunt.registerTask('serve', [
