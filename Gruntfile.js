@@ -9,6 +9,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-shell');
+  // grunt.loadNpmTasks('grunt-filerev');
+  grunt.loadNpmTasks('grunt-rev');
   var config = {
     app: 'sites',
     dist: 'dist'
@@ -57,7 +59,7 @@ module.exports = function (grunt) {
     },
     usemin: {
       options: {
-        // assetsDirs: ['<%= config.dist %>', '<%= config.dist %>/images']
+        assetsDirs: ['sites']
       },
       html: ['sites/**/*.html'],
       // css: ['<%= config.dist %>/styles/{,*/}*.css']
@@ -68,6 +70,26 @@ module.exports = function (grunt) {
           stderr: false
         },
         command: './compile'
+      }
+    },
+    // filerev: {
+    //   dist: {
+    //     files: {
+    //       src: [
+    //         'sites/css/*.css',
+    //         'sites/js/*.js'
+    //       ]
+    //     }
+    //   }
+    // },
+    rev: {
+      dist: {
+        files: {
+          src: [
+            'sites/css/*.css',
+            'sites/js/*.js'
+          ]
+        }
       }
     }
   });
@@ -80,6 +102,7 @@ module.exports = function (grunt) {
   'cssmin',
   'uglify',
   // 'filerev',
+  'rev',
   'usemin'
   ]);
 
