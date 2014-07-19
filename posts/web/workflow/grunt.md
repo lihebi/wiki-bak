@@ -275,6 +275,41 @@ usemin: {
 ```
 即加上assertsDirs配置。如果不加，生成的html中不会带有版本号。加上就可以了。
 
+## grunt-contrib-copy
+安装
+
+```
+npm install grunt-contrib-copy --save-dev
+```
+
+配置
+
+```js
+copy: {
+  main: {
+    files: [
+      {
+        expend: true,
+        src: [
+          'CNAME',
+          '404.html'
+        ],
+        dest: '<%= config.dist %>/'
+      }
+    ]
+  }
+}
+```
+注意：dest的字符串后要加`/`表示这是目录。
+
+还可以使用`cwd`选项指明`src`的根。
+
+使用
+
+```
+'copy:main'
+```
+
 # 通配符
 ```
 * # matches any number of characters, but not /
