@@ -200,7 +200,30 @@ usemin: {
 }
 </code></pre>
 <p>即加上assertsDirs配置。如果不加，生成的html中不会带有版本号。加上就可以了。</p>
-<h1 id="-">通配符</h1>
+<h2 id="grunt-contrib-copy">grunt-contrib-copy</h2>
+<p>安装</p>
+<pre><code>npm install grunt-contrib-copy --save-dev
+</code></pre><p>配置</p>
+<pre><code class="lang-js">copy: {
+  main: {
+    files: [
+      {
+        expend: true,
+        src: [
+          &#39;CNAME&#39;,
+          &#39;404.html&#39;
+        ],
+        dest: &#39;&lt;%= config.dist %&gt;/&#39;
+      }
+    ]
+  }
+}
+</code></pre>
+<p>注意：dest的字符串后要加<code>/</code>表示这是目录。</p>
+<p>还可以使用<code>cwd</code>选项指明<code>src</code>的根。</p>
+<p>使用</p>
+<pre><code>&#39;copy:main&#39;
+</code></pre><h1 id="-">通配符</h1>
 <pre><code>* # matches any number of characters, but not /
 ? # matches a single character, but not /
 ** # matches any number of characters, including /, as long as it&#39;s the only thing in a path part
