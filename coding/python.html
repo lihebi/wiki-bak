@@ -4,28 +4,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf8">
     <title>Post</title>
-    <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" href="/css/app.css">
     <link href="/css/main.css" rel="stylesheet">
   </head>
   <body>
-    <div class="narrow"><h2 id="-">遍历文件夹</h2>
-<pre><code>import os
+    <div class="narrow"><h1 id="python">python</h1>
+<h1 id="-">基础</h1>
+<ul>
+<li>not True # =&gt; False</li>
+<li>i+=1</li>
+</ul>
+<h1 id="string">string</h1>
+<h2 id="startswidth-endswith">startswidth &amp; endswith</h2>
+<pre><code class="lang-python">s.startswidth(&#39;VID&#39;); # =&gt; bool
+</code></pre>
+<h2 id="-">字符串相加</h2>
+<pre><code class="lang-python">&#39;xxf&#39;+&#39;xxf&#39;
+</code></pre>
+<p>和int型相加要转换</p>
+<pre><code class="lang-python">i = 1
+&#39;this is &#39;+str(i)
+</code></pre>
+<h2 id="-">分片</h2>
+<pre><code class="lang-python">s[4]
+s[4:]
+</code></pre>
+<h1 id="os">os</h1>
+<h2 id="-">遍历文件夹</h2>
+<pre><code class="lang-python">import os
 for root, dirs, files in os.walk(‘.’):
-for f in files:
-print f
-</code></pre><h2 id="range">range</h2>
-<pre><code>l = range(4, 10)
-</code></pre><h2 id="-">数字转换成字母</h2>
-<pre><code>for c in range(65, 91):
-print chr(c)
+  for f in files:
+    print f
+</code></pre>
+<h2 id="-shell-">执行shell命令</h2>
+<pre><code class="lang-python">os.system(&#39;mv a.c b.c&#39;)
+</code></pre>
+<h2 id="-">文件是否存在</h2>
+<pre><code class="lang-python">os.path.exists(&#39;/aaa/bbb/ccc&#39;) # =&gt; bool
+</code></pre>
+<h1 id="-">杂</h1>
+<h2 id="range">range</h2>
+<pre><code class="lang-python">l = range(4, 10)
+</code></pre>
+<h2 id="-">数字转换成字母</h2>
+<pre><code class="lang-python">for c in range(65, 91):
+  print chr(c)
 
 for c in arange(65+32, 91+32):
-print chr(c)
-</code></pre><h2 id="-">字符串可以直接相加</h2>
-<pre><code>&#39;xxf&#39;+&#39;xxf&#39;
-</code></pre><h2 id="os-rename">os.rename</h2>
-<pre><code>os.rename(‘a.jpg’, ‘out/b.jpg’)
-</code></pre></div>
+  print chr(c)
+</code></pre>
+<h2 id="os-rename">os.rename</h2>
+<pre><code class="lang-python">os.rename(‘a.jpg’, ‘out/b.jpg’)
+</code></pre>
+</div>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
