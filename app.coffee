@@ -73,7 +73,7 @@ for li in l
         content: content
         pretty: true
         page:
-          title: 'Post'
+          title: '正文 - 白衣染霜华'
       jade.renderFile 'jade/post.jade', options, (err, html) ->
         throw err if err
         fs.writeFile "sites/#{li.slice(0,-2)}html", html, (err) ->
@@ -88,7 +88,7 @@ options =
   list: list
   pretty: true
   page:
-    title: '何必'
+    title: '首页 - 白衣染霜华'
 
 jade.renderFile 'jade/index.jade', options, (err, html) ->
   throw err if err
