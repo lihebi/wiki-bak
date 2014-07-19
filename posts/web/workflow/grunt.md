@@ -220,6 +220,61 @@ html的写法
 <!--endbuild-->
 ```
 grunt会将此句子替换为生成的`app.css`和`app.js`
+
+### grunt-rev
+使用`grunt-filerev`不行，会生成新的文件夹`src`，里面包含带有rev的文件，而不是直接替换。
+
+使用`grunt-rev`会直接替换目标文件。
+
+安装
+
+```
+npm install grunt-rev --save-dev
+```
+
+配置：
+
+```js
+rev: {
+  dist: {
+    files: {
+      src: [
+        'sites/css/*.css',
+        'sites/js/*.js'
+      ]
+    }
+  }
+}
+```
+
+使用
+
+```js
+grunt.registerTask('build', [
+'shell',
+'less',
+'useminPrepare',
+'concat',
+'cssmin',
+'uglify',
+// 'filerev',
+'rev',
+'usemin'
+]);
+```
+
+注意：如果使用`rev`，则`usemin`配置应改为
+
+```js
+usemin: {
+  options: {
+    assetsDirs: ['sites']
+  },
+  html: ['sites/**/*.html'],
+}
+```
+即加上assertsDirs配置。如果不加，生成的html中不会带有版本号。加上就可以了。
+
 # 通配符
 ```
 * # matches any number of characters, but not /
