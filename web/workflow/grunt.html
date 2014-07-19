@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf8">
     <title>web/workflow/grunt.md 正文 - 白衣染霜华</title>
-    <link rel="stylesheet" href="/css/app.css">
-    <link href="/css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/adc39f9c.app.css">
+    <link href="/css/06f85b78.main.css" rel="stylesheet">
   </head>
   <body>
     <div class="narrow"><h1 id="-">安装</h1>
@@ -161,6 +161,45 @@ usemin: {
 &lt;!--endbuild--&gt;
 </code></pre>
 <p>grunt会将此句子替换为生成的<code>app.css</code>和<code>app.js</code></p>
+<h3 id="grunt-rev">grunt-rev</h3>
+<p>使用<code>grunt-filerev</code>不行，会生成新的文件夹<code>src</code>，里面包含带有rev的文件，而不是直接替换。</p>
+<p>使用<code>grunt-rev</code>会直接替换目标文件。</p>
+<p>安装</p>
+<pre><code>npm install grunt-rev --save-dev
+</code></pre><p>配置：</p>
+<pre><code class="lang-js">rev: {
+  dist: {
+    files: {
+      src: [
+        &#39;sites/css/*.css&#39;,
+        &#39;sites/js/*.js&#39;
+      ]
+    }
+  }
+}
+</code></pre>
+<p>使用</p>
+<pre><code class="lang-js">grunt.registerTask(&#39;build&#39;, [
+&#39;shell&#39;,
+&#39;less&#39;,
+&#39;useminPrepare&#39;,
+&#39;concat&#39;,
+&#39;cssmin&#39;,
+&#39;uglify&#39;,
+// &#39;filerev&#39;,
+&#39;rev&#39;,
+&#39;usemin&#39;
+]);
+</code></pre>
+<p>注意：如果使用<code>rev</code>，则<code>usemin</code>配置应改为</p>
+<pre><code class="lang-js">usemin: {
+  options: {
+    assetsDirs: [&#39;sites&#39;]
+  },
+  html: [&#39;sites/**/*.html&#39;],
+}
+</code></pre>
+<p>即加上assertsDirs配置。如果不加，生成的html中不会带有版本号。加上就可以了。</p>
 <h1 id="-">通配符</h1>
 <pre><code>* # matches any number of characters, but not /
 ? # matches a single character, but not /
@@ -215,6 +254,6 @@ exports.warnOn = [&#39;*.png&#39;, &#39;*.gif&#39;, &#39;*.jpg&#39;];
       ga('send', 'pageview');
       
     </script>
-    <script src="/js/app.js"></script>
+    <script src="/js/f013a3a9.app.js"></script>
   </body>
 </html>
