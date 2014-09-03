@@ -3,6 +3,8 @@
 build to sites/
 
 ```
+npm install
+bower install
 grunt build
 ```
 
