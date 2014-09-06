@@ -1,3 +1,9 @@
+#basic syntax
+```sh
+a=5
+b=hello
+c=”hello world”
+```
 
 # 变量
 
@@ -181,6 +187,22 @@ fi
 关于`;`:
 如果语句后面是行结束符，不需要。
 如果有`then`等在一行上，需要。
+
+## About [] [[]]
+`[` is a synonym for test, and a builtin for efficiency. It is a command.
+`[[` is a keyword, perform comparisons in a manner more familiar to programmers.
+
+examples:
+```sh
+if test -z “$1”
+then
+    xxx
+fi
+# an equalvalent statement
+if /usr/bin/test -z “$1”
+# another equalvalent
+if [ -z “$1” ]
+```
 
 ## Case
 
