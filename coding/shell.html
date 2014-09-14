@@ -8,7 +8,12 @@
     <link href="/css/06f85b78.main.css" rel="stylesheet">
   </head>
   <body>
-    <div class="narrow"><h1 id="-">变量</h1>
+    <div class="narrow"><h1 id="basic-syntax">basic syntax</h1>
+<pre><code class="lang-sh">a=5
+b=hello
+c=”hello world”
+</code></pre>
+<h1 id="-">变量</h1>
 <p>&quot;&quot;中的变量$xxx会解析,&#39;&#39;不会.</p>
 <pre><code>`xxx` &lt;=&gt; $(xxx)
 </code></pre><h2 id="-">变量替换</h2>
@@ -144,6 +149,18 @@ fi
 <p><code>[[]]</code>: TODO</p>
 <p><code>(())</code>: TODO</p>
 <p>关于<code>;</code>:<br>如果语句后面是行结束符，不需要。<br>如果有<code>then</code>等在一行上，需要。</p>
+<h2 id="about-">About [] [[]]</h2>
+<p><code>[</code> is a synonym for test, and a builtin for efficiency. It is a command.<br><code>[[</code> is a keyword, perform comparisons in a manner more familiar to programmers.</p>
+<p>examples:</p>
+<pre><code class="lang-sh">if test -z “$1”
+then
+    xxx
+fi
+# an equalvalent statement
+if /usr/bin/test -z “$1”
+# another equalvalent
+if [ -z “$1” ]
+</code></pre>
 <h2 id="case">Case</h2>
 <pre><code>case $a in
 1|en) echo &#39;en&#39;;;

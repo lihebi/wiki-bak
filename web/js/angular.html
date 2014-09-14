@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>web/js/angular.md 正文 - 白衣染霜华</title>
+    <link rel="stylesheet" href="/css/adc39f9c.app.css">
+    <link href="/css/06f85b78.main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="angular">Angular</h1>
+<h1 id="architecture">Architecture</h1>
+<p><code>index.html</code><br><code>app.js</code><br><code>controller1.js</code><br><code>controller2.js</code></p>
+<p>in index.html</p>
+<pre><code class="lang-html">&lt;body ng-app=&quot;myApp&quot;&gt;
+&lt;/body&gt;
+</code></pre>
+<p>in app.js</p>
+<pre><code class="lang-js">var app = angular.module(&#39;myApp&#39;, []);
+</code></pre>
+<p>只要这个body用<code>ng-app</code>包装了，那么在html里面就可以使用<code>expression</code>: <code>{{3+5}}</code>.</p>
+<p>在任何tag上，如果加入<code>ng-controller</code>，那么这个controller的object就实现了<code>two-way binding</code>.<br>在html中改变，js中的变量值就会变化。js中变化了，html中也会显示。加入controller的方法如下：</p>
+<p>html:</p>
+<pre><code class="lang-html">&lt;div ng-controller=&quot;StoreController as store&quot;&gt;
+&lt;h1&gt;{{store.product.name}}&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+<p>app.js</p>
+<pre><code class="lang-js">app.controller(&#39;StoreController&#39;, function() {
+  this.product = ..;
+  store = this;
+});
+</code></pre>
+<h1 id="service">Service</h1>
+<ul>
+<li>$http<br>fetch data from server</li>
+</ul>
+<pre><code class="lang-js">$http({method: &#39;GET&#39;, url: &#39;/products.json&#39;});
+</code></pre>
+<p>or</p>
+<pre><code class="lang-js">$http.get(&#39;/products.json&#39;, {apiKey: &#39;myApiKey&#39;});
+</code></pre>
+<p>they return a promise, with <code>.success()</code> and <code>.error()</code></p>
+<p>If we tell <code>$http</code> to fetch JSON, the result will be decoded into javascript objects and arrays automatically</p>
+<p>other http:</p>
+<pre><code class="lang-js">$http.post(&#39;/x.json&#39;, {param: &#39;value&#39;});
+$http.delete(&#39;/x.json&#39;);
+</code></pre>
+<ul>
+<li><p>$log<br>log data to javascript console</p>
+</li>
+<li><p>$filter<br>filter an array</p>
+</li>
+</ul>
+<h2 id="usage">usage</h2>
+<p>app.js</p>
+<pre><code class="lang-js">(function() {
+  var app = angular.module(...);
+  app.controller(&#39;StoreController&#39;, [&#39;$http&#39;, &#39;$log&#39;, function($http, $log) {
+    var store = this;
+    store.products = [];
+    $http.get(&#39;/products.json&#39;).success(function(data) {
+      store.products = data;
+    });
+  }]);
+})();
+</code></pre>
+<h1 id="best-practice-code-organize">Best Practice &amp; code organize</h1>
+<p>app.js: top level module attached via <code>ng-app</code><br>products.js: functionality for products</p>
+<p>app.js</p>
+<pre><code class="lang-js">(function() {
+  var app = angular.module(&#39;store&#39;, [&#39;store-products&#39;]);
+  app.controller(&#39;StoreController&#39;, function() { ... });
+})();
+</code></pre>
+<p>products.js</p>
+<pre><code class="lang-js">(function() {
+  var app = angular.module(&#39;store-products&#39;, []);
+  app.directive(...);
+  app.directive(...);
+})();
+</code></pre>
+<p>index.html</p>
+<pre><code class="lang-html">&lt;script src=&#39;angular.js&#39;&gt;&lt;/script&gt;
+&lt;script src=&#39;app.js&#39;&gt;&lt;/script&gt;
+&lt;script src=&#39;products.js&#39;&gt;&lt;/script&gt;
+</code></pre>
+<h1 id="directives-">Directives汇总</h1>
+<ul>
+<li>ng-app</li>
+<li>ng-controller</li>
+<li>ng-repeat</li>
+</ul>
+<pre><code class="lang-html">&lt;div ng-repeat=&quot;product in store.products&quot;&gt;
+{{product.xx}}
+&lt;/div&gt;
+</code></pre>
+<ul>
+<li>ng-show</li>
+</ul>
+<pre><code class="lang-html">&lt;div ng-show=&quot;product.boolVar&quot;&gt;&lt;/div&gt;
+&lt;!-- or --&gt;
+&lt;div ng-show=&quot;!product.boolVar&quot;&gt;&lt;/div&gt;
+</code></pre>
+<ul>
+<li>ng-hide</li>
+<li>ng-src</li>
+</ul>
+<pre><code class="lang-html">&lt;img ng-src=&quot;{{product.image}}&quot;/&gt;
+</code></pre>
+<ul>
+<li>ng-init<br>设定初始值</li>
+</ul>
+<pre><code>&lt;div ng-init=&quot;tab=1&quot;&gt;
+{{tab}}
+&lt;/div&gt;
+</code></pre><ul>
+<li>ng-class<br>满足一定条件时设定tag的class</li>
+</ul>
+<pre><code class="lang-html">&lt;li ng-class=&quot;active:tab===1&quot;&gt;
+</code></pre>
+<ul>
+<li>ng-click<br>当单击时，执行的字符串。</li>
+</ul>
+<pre><code class="lang-html">&lt;a href ng-click=&quot;tab=3&quot;&gt;Tab3&lt;/a&gt;
+</code></pre>
+<ul>
+<li>ng-model<br>binds the form element value to the property of the object</li>
+</ul>
+<pre><code class="lang-html">&lt;select ng-model=&quot;star&quot;&gt;
+  &lt;option value=&quot;1&quot;&gt;1 star&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;2 stars&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+<pre><code class="lang-html">&lt;textarea ng-model=&quot;store.product.desc&quot;&gt;&lt;/textarea&gt;
+</code></pre>
+<pre><code class="lang-html">&lt;input ng-model=&quot;email&quot; type=&quot;email&quot;/&gt;
+</code></pre>
+<pre><code class="lang-html">&lt;input ng-model=&quot;color&quot; type=&quot;radio&quot; value=&quot;red&quot;/&gt; Red
+&lt;input ng-model=&quot;color&quot; type=&quot;radio&quot; value=&quot;blue&quot;/&gt; Blue
+&lt;input ng-model=&quot;color&quot; type=&quot;radio&quot; value=&quot;green&quot;/&gt; Green
+</code></pre>
+<ul>
+<li>ng-submit<br>处理form时，比使用ng-model更系统。</li>
+</ul>
+<pre><code class="lang-html">&lt;form ng-controller=&quot;ViewController as vctrl&quot; ng-submit=&quot;vctrl.addView(product)&quot;&gt;&lt;/form&gt;
+</code></pre>
+<pre><code class="lang-js">app.controller(&quot;ViewController&quot;, function() {
+  this.review = {};
+  this.addView = function(product) {
+    product.reviews.push(this.review);
+    this.review = {};
+  };
+});
+</code></pre>
+<ul>
+<li>ng-include</li>
+</ul>
+<p>index.html</p>
+<pre><code class="lang-html">&lt;h3 ng-include=&quot;&#39;product-title.html&#39;&quot;&gt;&lt;/h3&gt;
+</code></pre>
+<p>product-title.html</p>
+<pre><code class="lang-html">{{product.name}}
+&lt;em&gt;{{product.price}}
+</code></pre>
+<h1 id="custom-directives">Custom Directives</h1>
+<h2 id="element">Element</h2>
+<pre><code class="lang-html">&lt;product-title&gt;&lt;/product-title&gt;
+</code></pre>
+<p>app.js</p>
+<pre><code class="lang-js">app.directive(&#39;productTitle&#39;, function() {
+  return {
+    restrict: &#39;E&#39;, // Element
+    templateUrl: &#39;product-title.html&#39;
+  };
+});
+</code></pre>
+<h2 id="attribute">Attribute</h2>
+<p>index.html</p>
+<pre><code class="lang-html">&lt;h3 product-title&gt;&lt;/h3&gt;
+</code></pre>
+<p>app.js</p>
+<pre><code class="lang-js">app.directive(&#39;productTitle&#39;, function() {
+  return {
+    restrict: &#39;A&#39;, // Attribute
+    templateUrl: &#39;product-title.html&#39;
+  };
+});
+</code></pre>
+<h2 id="custom-directive-with-controller">Custom Directive with Controller</h2>
+<p>app.js</p>
+<pre><code class="lang-js">app.directive(&#39;productPanels&#39;, function() {
+  return {
+    restrict: &#39;E&#39;,
+    templateUrl: &#39;product-panel.html&#39;,
+    controller: function() {
+      ...
+    },
+    controllerAs: &#39;panels&#39;
+  };
+});
+</code></pre>
+<h1 id="filters">Filters</h1>
+<p>Syntax: <code>{{data | filter:options }}</code></p>
+<ul>
+<li>currency<br><code>{{ product.price | currency }}</code></li>
+<li>date<br><code>{{ &#39;1388123412323&#39; | date:&#39;MM/dd/yyyy @ h:mma&#39; }} //=&gt; 12/27/2013</code></li>
+<li>uppercase<br><code>{{ &#39;abcde&#39; | uppercase }}</code></li>
+<li>limitTo<br><code>{{ &#39;limit char number&#39; | limitTo:8 }}</code><br><code>&lt;li ng-repeat=&quot;product in store.products | limitsTo:3&quot;&gt;&lt;/li&gt;</code></li>
+<li>orderBy<br><code>&lt;li ng-repeat=&quot;product in store.products | orderBy:&#39;-price&#39;&quot;&gt;&lt;/li&gt;</code></li>
+</ul>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-2', 'auto');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/925a7cfc.app.js"></script>
+  </body>
+</html>
