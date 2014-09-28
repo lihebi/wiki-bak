@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>platform/docker.md 正文 - 白衣染霜华</title>
+    <link rel="stylesheet" href="/css/adc39f9c.app.css">
+    <link href="/css/06f85b78.main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="docker">Docker</h1>
+<h1 id="start-docker">Start Docker</h1>
+<pre><code class="lang-sh">boot2docker init
+boot2docker start
+export FSO_JGSO=xxxxxx # it will be output
+docker ... # commands!
+boot2docker stop
+</code></pre>
+<h1 id="commands">Commands</h1>
+<ul>
+<li><code>docker</code> list all available commands</li>
+<li><code>docker version</code> show docker version</li>
+<li><code>docker search &lt;NAME&gt;</code> search for an image in the docker index</li>
+<li><code>docker pull &lt;username&gt;/&lt;repository&gt;</code> download image from docker image server</li>
+<li><code>docker run &lt;ImageName&gt; &lt;command&gt;</code></li>
+</ul>
+<pre><code class="lang-sh">docker run learn/tutorial echo &#39;hello world&#39;
+docker run learn/tutorial apt-get install -y ping
+</code></pre>
+<ul>
+<li><code>docker commit &lt;containerID&gt;</code> commit changes to save. 3 or 4 digits can work for containerID</li>
+<li><code>docker commit &lt;containerID&gt; learn/ping</code></li>
+<li><code>docker ps</code> show only running container</li>
+<li><code>docker ps -a</code> show all containers</li>
+<li><code>docker ps -l</code> return detail of the last container</li>
+<li><code>docker stop sleepy_hypatia</code> stop a container</li>
+<li><code>docker start sleepy_hypatia</code> start a container</li>
+<li><code>docker restart sleepy_hypatia</code> restart a container</li>
+<li><code>docker rm sleepy_hypatia</code> delete a already stopped container</li>
+<li><code>docker inspect &lt;ID&gt;</code></li>
+<li><code>docker images</code></li>
+<li><code>docker push</code></li>
+</ul>
+<h1 id="an-example-of-web-app">An example of web app</h1>
+<pre><code>docker run -d -P training/webapp python app.py
+</code></pre><p>note:</p>
+<ul>
+<li><code>-d</code>: run the container in background</li>
+<li><code>-P</code>: map any required network ports inside the container to our host.</li>
+</ul>
+<pre><code>docker ps
+</code></pre><p>find the PORT 0.0.0.0:49115-&gt;5000/tcp</p>
+<p><strong>49115</strong></p>
+<pre><code>boot2docker ip # =&gt; 192.168.59.103
+</code></pre><p>navigate to <code>192.168.59.103:49115</code> to see result.</p>
+<pre><code>docker logs -f sleepy_hypatia
+</code></pre><p>check the webapp&#39;s log</p>
+<ul>
+<li><code>-f</code> means watch the output</li>
+</ul>
+<pre><code>docker top sleepy_hypatia
+</code></pre><p>examine the processes running in the container.</p>
+<h1 id="images">Images</h1>
+<p>List all local images</p>
+<pre><code>docker images
+</code></pre><p>If the images we specify is not listed in local images, docker will download them.</p>
+<pre><code>docker run -t -i ubuntu:14.04 /bin/bash
+</code></pre><p>run interactively.<br>if not specify <code>14.04</code>, it will be <code>ubuntu:latest</code></p>
+<pre><code>docker pull centos
+</code></pre><h1 id="dockerfile">Dockerfile</h1>
+<p>sample dockerfile:</p>
+<pre><code class="lang-docker"># this is a comment
+FROM ubuntu:14.04
+MAINTAINER Hebi Li &lt;hebi@example.com&gt;
+RUN apt-get update &amp;&amp; apt-get install -y ruby ruby-dev
+RUN gem install sinatra
+</code></pre>
+<p>build the image</p>
+<pre><code>docker build -t=&quot;lihebi/sinatra:v2&quot; .
+</code></pre><ul>
+<li><code>v2</code> is optional tag</li>
+<li><code>.</code> means the dockerfile is in current folder</li>
+</ul>
+<p>then push to dockerhub</p>
+<pre><code>docker push lihebi/sinatra
+</code></pre><h1 id="tips">tips</h1>
+<p>remove all containers</p>
+<pre><code>docker rm $(docker ps -a -q)
+</code></pre><p>stop all containers</p>
+<pre><code>docker stop $(docker ps -a -q)
+</code></pre><h1 id="port-binding">Port Binding</h1>
+<p>bind automatically:</p>
+<pre><code>docker run -d -P training/webapp python app.py
+</code></pre><p>can be viewed by</p>
+<pre><code>docker ps
+</code></pre><p>map a specific port</p>
+<pre><code>docker run -d -p 5000:5000 training/webapp python app.py
+</code></pre><p>map on local</p>
+<pre><code>docker run -d -p 127.0.0.1:5000:5000
+</code></pre><p>map on local automatically</p>
+<pre><code>docker run -d -p 127.0.0.1::5000
+</code></pre><p>map a UDP port</p>
+<pre><code>docker run -d -p 127.0.0.1:5000:5000/udp
+</code></pre><p>check a mapping port by <code>docker port</code></p>
+<pre><code>docker port nostalgic_morse 5000
+</code></pre><p><code>-p</code> can be used multiple times to configure multiple ports.</p>
+<h1 id="name">name</h1>
+<p>Notice that containers are given a long random name.<br>To give a specific name for a container:</p>
+<pre><code>docker run -d -P --name web training/webapp python app.py
+</code></pre><p>get a container&#39;s name</p>
+<pre><code>docker inspect -f &quot;{{ .Name }}&quot; aed84ee
+</code></pre><h1 id="container-linking">Container Linking</h1>
+<p>db container</p>
+<pre><code>docker run -d --name db training/postgres
+</code></pre><p>webapp container</p>
+<pre><code>docker run -d -P --name web --link db:db training/webapp python app.py
+</code></pre><p>link syntax: <code>--link name:alias</code><br><code>name</code> is the container name. <code>alias</code> is your name.</p>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-2', 'auto');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/925a7cfc.app.js"></script>
+  </body>
+</html>
