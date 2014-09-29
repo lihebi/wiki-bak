@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf8">
+    <title>software/redis.md 正文 - 白衣染霜华</title>
+    <link rel="stylesheet" href="/css/adc39f9c.app.css">
+    <link href="/css/06f85b78.main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="narrow"><h1 id="redis">Redis</h1>
+<h1 id="install">Install</h1>
+<pre><code>brew install redis
+</code></pre><h1 id="usage">Usage</h1>
+<p>start server:</p>
+<pre><code>redis-server
+</code></pre><p>start client:</p>
+<pre><code>redis-cli
+</code></pre><h1 id="commands">Commands</h1>
+<p>set and get</p>
+<pre><code class="lang-redis">set server:name &quot;fido&quot;
+get server:name # =&gt; &quot;fido&quot;
+</code></pre>
+<p>del and incr</p>
+<pre><code class="lang-redis">set connections 10
+incr connections # =&gt; 11
+incr connections # =&gt; 12
+del connections
+get connections # =&gt; (nil)
+incr connections # =&gt; 1
+get connections # =&gt; 1
+</code></pre>
+<p>expire and ttl</p>
+<pre><code class="lang-redis">ttl resource:lock &quot;Demo&quot;
+expire resource:lock 120
+</code></pre>
+<p>ttl check the current time left</p>
+<pre><code class="lang-redis"># before set expire
+ttl resource:lock # =&gt; -1, means it will never expire
+# after
+ttl resource:lock # =&gt; 113
+# the time expires
+ttl resource:lock # =&gt; -2, means the key doesn&#39;t exist anymore
+</code></pre>
+<p>every time you set a key, its ttl will be reset.</p>
+<h2 id="list">List</h2>
+<p>rpush, lpush, llen, lrange, lpop, rpop</p>
+<pre><code class="lang-redis"># push
+rpush friends &#39;Alice&#39;
+rpush friends &#39;Bob&#39;
+# push to the start of list
+lpush friends &#39;Cindy&#39;
+</code></pre>
+<p>get a range from list</p>
+<pre><code class="lang-redis">lrange friends 0 -1 # get all
+lrange friends 0 1 # get first and second
+</code></pre>
+<pre><code class="lang-redis">llen friends # =&gt; 3
+lpop friends # pop and return
+rpop friends
+</code></pre>
+<h2 id="set">Set</h2>
+<p>sadd, srem, sismember, smembers, sunion</p>
+<pre><code class="lang-redis">sadd myset &#39;a&#39;
+sadd myset &#39;b&#39;
+sadd myset &#39;c&#39;
+srem myset &#39;c&#39; # =&gt; 1
+srem myset &#39;d&#39; # =&gt; 0
+
+sismember myset &#39;a&#39; # =&gt; 1
+sismember myset &#39;c&#39; # =&gt; 0
+
+smembers # =&gt; &#39;a&#39; &#39;b&#39;
+
+sadd set2 &#39;d&#39;
+sadd set2 &#39;a&#39;
+sunion myset set2 # =&gt; &#39;a&#39; &#39;b&#39; &#39;d&#39;
+</code></pre>
+<h2 id="sorted-set">Sorted Set</h2>
+<pre><code class="lang-redis">zadd hackers 12 &#39;alice&#39;
+zadd hackers 31 &#39;bob&#39;
+zadd hackers 11 &#39;cindy&#39;
+
+zrange hackers 2 4
+</code></pre>
+<p>They will be sorted by 12, 31, 11</p>
+<h2 id="hash">Hash</h2>
+<pre><code class="lang-redis">hset user:1000 name &quot;John&quot;
+hset user:1000 email &quot;john@gmail.com&quot;
+hset user:1000 password &quot;sfin&quot;
+
+hgetall user:1000
+hget user:1000 name
+</code></pre>
+<p>set in one line</p>
+<pre><code class="lang-redis">hmset user:1000 name &quot;John&quot; password &#39;djsf&#39; email &#39;john@gmail.com&#39;
+</code></pre>
+<p>incr</p>
+<pre><code class="lang-redis">hset user:1000 visits 10
+hincrby user:1000 visits 1
+hincrby user:1000 visits 10
+hdel user:1000 visits
+hincrby user:1000 visits 1 # =&gt; 1
+</code></pre>
+</div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-50872903-2', 'auto');
+      ga('send', 'pageview');
+      
+    </script>
+    <script src="/js/925a7cfc.app.js"></script>
+  </body>
+</html>
